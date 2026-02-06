@@ -1,0 +1,263 @@
+:root{
+    --pink:#e84393;
+}
+*{
+    margin:0; padding:0;
+    box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform:capitalize;
+    transition: .2s linear;
+}
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+}
+header{
+    position: fixed;
+    top:0; left:0; right:0;
+    background:#fff;
+    padding:2rem 9%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:1000;
+    box-shadow:0.5rem 1rem rgba(0,0,0,.1);
+}
+/* Contenedor del logo y animación */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+header .logo{
+    font-size: 3rem;
+    color:#333;
+    white-space: nowrap;
+}
+header .logo span{
+    color:var(--pink);
+}
+header .barranav {
+    display: flex;
+    gap: 2.5rem;
+}
+header .barranav a{
+    font-size:2rem;
+    padding:0 1rem;
+    color:#666;
+    white-space: nowrap;
+}
+header .barranav a:hover{
+    color:var(--pink);
+}
+header .iconos {
+    display: flex;
+    gap: 2.5rem;
+}
+header .iconos a{
+    font-size: 2.5rem;
+    color: #333;
+}
+header .iconos a:hover{
+    color:var(--pink);
+}
+header #toggler{
+    display:none;
+}
+header .fa-bars{
+    font-size:3rem;
+    color: #333;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    cursor:pointer;
+    border: .1rem solid rgba(0,0,0,.3);
+    display: none;
+}
+/* Animación del loader */
+.loader {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    flex-shrink: 0;
+}
+.loader:before {
+    content: '';
+    width: 40px;
+    height: 5px;
+    background: #f0808050;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-radius: 50%;
+    animation: shadow324 0.5s linear infinite;
+}
+.loader:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #f08080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    animation: jump7456 0.5s linear infinite;
+}
+@keyframes jump7456 {
+    15% {
+        border-bottom-right-radius: 3px;
+    }
+    25% {
+        transform: translateY(9px) rotate(22.5deg);
+    }
+    50% {
+        transform: translateY(18px) scale(1, .9) rotate(45deg);
+        border-bottom-right-radius: 40px;
+    }
+    75% {
+        transform: translateY(9px) rotate(67.5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(90deg);
+    }
+}
+@keyframes shadow324 {
+    0%, 100% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.2, 1);
+    }
+}
+
+@media (max-width:991px) {
+    html{
+        font-size: 55%;
+    }
+    header{
+        padding:2rem 5%;
+    }
+}
+
+@media (max-width:768px) {
+    header{
+        padding: 2rem 3%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* Las 3 barras a la izquierda */
+    header .fa-bars{
+        display: block;
+        font-size: 2.5rem;
+        order: 1;
+    }
+    /* Logo y animación centrados */
+    .logo-container{
+        order: 2;
+        left: 50%;
+        transform: translateX(-1%);
+        gap: 3.5rem;
+    }
+    
+    header .logo{
+        font-size: 4.8rem;
+    }
+    /* Loader más pequeño en móvil */
+    .loader {
+        width: 35px;
+        height: 35px;
+    }
+    .loader:before {
+        width: 35px;
+        top: 45px;
+    }
+    /* Iconos a la derecha */
+    header .iconos{
+        gap: 2rem;
+        order: 3;
+    }
+    header .iconos a{
+        font-size: 2.4rem;
+    }
+    /* Menú desplegable */
+    header .barranav{
+        order: 4;
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        background: #f0f0f0;
+        padding: 1.5rem;
+        margin-left: -3%;
+        margin-right: -3%;
+        max-height: 500px;
+        opacity: 1;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    /* Ocultar menú cuando checkbox está checked */
+    header #toggler:checked ~ .barranav{
+        max-height: 0;
+        opacity: 0;
+        padding: 0 1.5rem;
+        overflow: hidden;
+    }
+    header .barranav a{
+        display: block;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        background: #fff;
+        border-radius: .3rem;
+        font-size: 2rem;
+        color: #666;
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.05);
+        text-align: center;
+    }
+    header .barranav a:last-child{
+        margin-bottom: 0;
+    }
+    header .barranav a:hover{
+        background: #f9f9f9;
+        color: var(--pink);
+    }
+}
+@media (max-width:450px) {
+    html{
+        font-size: 50%;
+    }   
+    header{
+        padding: 1.5rem 3%;
+    }
+    header .logo{
+        font-size: 2.5rem;
+    }
+    .loader {
+        width: 30px;
+        height: 30px;
+    }
+    .loader:before {
+        width: 30px;
+        top: 40px;
+    }
+    .logo-container{
+        gap: 1rem;
+    }
+    header .iconos a{
+        font-size: 2.2rem;
+    }
+    header .iconos{
+        gap: 1.5rem;
+    }
+    header .fa-bars{
+        font-size: 2.2rem;
+        padding: .4rem 1.2rem;
+    }
+    header .barranav a{
+        padding: 1.8rem;
+        font-size: 1.8rem;
+        margin: 0 0 1.2rem 0;
+    }
+}
