@@ -1,3 +1,4 @@
+/* ========== VARIABLES CSS ========== */
 :root{
     --pink:#e84393;
     --pink-hover:#d63384;
@@ -8,69 +9,82 @@
     --shadow: 0 .5rem 1rem rgba(0,0,0,.1);
     --shadow-lg: 0 1rem 2rem rgba(0,0,0,.15);
 }
+
+/* ========== RESET Y CONFIGURACIÓN BASE ========== */
 *{
-    margin:0; padding:0;
+    margin:0; 
+    padding:0;
     box-sizing: border-box;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    outline: none; border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none; 
+    border: none;
     text-decoration: none;
-    text-transform:capitalize;
-    transition:all .3s ease;
+    transition: all .3s ease;
 }
+
 html{
-    font-size: 62.5%;
-    scroll-behavior: smooth;
-    scroll-padding-top: 8rem;
-    overflow-x: hidden;
+    font-size: 62.5%; /* 1rem = 10px */
+    scroll-behavior: smooth; /* Scroll suave entre secciones */
+    scroll-padding-top: 8rem; /* Espacio para el header fijo */
+    overflow-x: hidden; /* Evita scroll horizontal */
 }
+
 body{
-    background: #f0f0f0;
+    background: var(--white);
     overflow-x: hidden;
 }
-Estas clases se añadirán con JavaScript */
-.fade-in{
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
+
+/* ========== ANIMACIONES KEYFRAMES ========== */
+
+/* Animación de entrada desde abajo */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.fade-in.visible{
-    opacity: 1;
-    transform: translateY(0);
+/* Animación de entrada desde la izquierda */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.fade-in-left{
-    opacity: 0;
-    transform: translateX(-30px);
-    transition: all 0.8s ease;
+/* Animación de entrada desde la derecha */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.fade-in-left.visible{
-    opacity: 1;
-    transform: translateX(0);
+/* Animación de zoom suave */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.fade-in-right{
-    opacity: 0;
-    transform: translateX(30px);
-    transition: all 0.8s ease;
-}
-
-.fade-in-right.visible{
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.zoom-in{
-    opacity: 0;
-    transform: scale(0.9);
-    transition: all 0.8s ease;
-}
-
-.zoom-in.visible{
-    opacity: 1;
-    transform: scale(1);
-}
+/* Animación del loader (cubo saltarín) */
 @keyframes jump7456 {
     15% {
         border-bottom-right-radius: 3px;
@@ -89,6 +103,8 @@ Estas clases se añadirán con JavaScript */
         transform: translateY(0) rotate(90deg);
     }
 }
+
+/* Animación de sombra del loader */
 @keyframes shadow324 {
     0%, 100% {
         transform: scale(1, 1);
@@ -98,116 +114,56 @@ Estas clases se añadirán con JavaScript */
     }
 }
 
-@keyframes fadeInUp{
-    from{
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-@keyframes FadeInLeft{
-    from{
-        opacity:0;
-        transform: translateX(-30px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-@keyframes FadeInRight{
-    from{
-        opacity:0;
-        transform:translateX(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-@keyframes zoomIn{
-    from{
-        opacity:0;
-        transform:scale(0.9);
-    }
-    to{
-        opacity:0;
-        transform:scale(0.9);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-@keyframes jump7456{
-15%{
-    border-bottom-right-radius: 3px;
-    }
-25%{
-    transform: translateY(9px) rotate(22.5deg);
-    }
-50%{
-    transform:translateY(18px) scale(1,.9) rotate(45deg);
-    border-bottom-right-radius:40px;
-    }
-75%{
-    transform: translateY(9px) rotate(67.5deg);
-    }
-100%{
-    transform: translateY(0) rotate(90deg);
-    }
-}
-@keyframes shadow324{
-    0%,100%{
-        transform: scale(1,1);
-    }
-    50%{
-        transform: scale(1.2,1);
-    }
-}
-@keyframes pulse{
-    0%,100%{
+/* Animación de pulso para botones */
+@keyframes pulse {
+    0%, 100% {
         transform: scale(1);
     }
-    50%{
+    50% {
         transform: scale(1.05);
     }
 }
+
+/* ========== HEADER (BARRA DE NAVEGACIÓN) ========== */
 header{
-    position: fixed;
+    position: fixed; /* Fijo en la parte superior */
     top:0; left:0; right:0;
-    background:#fff;
-    padding:2rem 9%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    z-index:1000;
-    box-shadow:0.5rem 1rem rgba(0,0,0,.1);
+    background: var(--white);
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000; /* Por encima de todo */
+    box-shadow: var(--shadow);
     animation: fadeInUp 0.5s ease;
 }
-/* Contenedor del logo y animación */
+
+/* Contenedor del logo y loader */
 .logo-container {
     display: flex;
     align-items: center;
     gap: 2rem;
     animation: fadeInLeft 0.6s ease;
 }
+
+/* Estilo del logo */
 header .logo{
     font-size: 3rem;
-    color:#333;
+    color: var(--dark);
+    font-weight: bold;
     white-space: nowrap;
     transition: all 0.3s ease;
 }
+
 header .logo:hover{
-    transform:scale(1.05);
-}
-header .logo span{
-    color:var(--pink);
+    transform: scale(1.05);
 }
 
+header .logo span{
+    color: var(--pink);
+}
+
+/* Barra de navegación */
 header .barranav {
     display: flex;
     gap: 2.5rem;
@@ -215,69 +171,80 @@ header .barranav {
 }
 
 header .barranav a{
-    font-size:2rem;
-    padding:0 1rem;
-    color:#666;
-    white-space: nowrap;
+    font-size: 1.7rem;
+    padding: 0 1rem;
+    color: var(--gray);
     font-weight: 500;
     position: relative;
 }
+
+/* Efecto de subrayado animado */
 header .barranav a::after{
-    content:'';
+    content: '';
     position: absolute;
     bottom: -5px;
-    left:0;
+    left: 0;
     width: 0;
     height: 2px;
-    background:var(--pink);
+    background: var(--pink);
     transition: width 0.3s ease;
 }
+
 header .barranav a:hover::after{
     width: 100%;
 }
+
 header .barranav a:hover{
-    color:var(--pink);
+    color: var(--pink);
 }
 
+/* Iconos del header */
 header .iconos {
     display: flex;
     gap: 2.5rem;
-    animation: fadeInRight 0.6s ease; 
+    animation: fadeInRight 0.6s ease;
 }
+
 header .iconos a{
-    font-size: 2.5rem;
-    color: #333;
+    font-size: 2.2rem;
+    color: var(--dark);
     transition: all 0.3s ease;
 }
+
 header .iconos a:hover{
-    color:var(--pink);
+    color: var(--pink);
     transform: scale(1.2) rotate(10deg);
 }
 
+/* Checkbox y botón hamburguesa (ocultos en desktop) */
 header #toggler{
-    display:none;
+    display: none;
 }
+
 header .fa-bars{
-    font-size:3rem;
-    color: #333;
+    font-size: 3rem;
+    color: var(--dark);
     border-radius: .5rem;
     padding: .5rem 1.5rem;
-    cursor:pointer;
+    cursor: pointer;
     border: .1rem solid rgba(0,0,0,.3);
     display: none;
     transition: all 0.3s ease;
 }
+
 header .fa-bars:hover{
     background: var(--pink);
     color: var(--white);
 }
-/* Animación del loader */
+
+/* ========== LOADER ANIMATION ========== */
 .loader {
     width: 40px;
     height: 40px;
     position: relative;
     flex-shrink: 0;
 }
+
 .loader:before {
     content: '';
     width: 40px;
@@ -289,6 +256,7 @@ header .fa-bars:hover{
     border-radius: 50%;
     animation: shadow324 0.5s linear infinite;
 }
+
 .loader:after {
     content: '';
     width: 100%;
@@ -300,19 +268,24 @@ header .fa-bars:hover{
     border-radius: 4px;
     animation: jump7456 0.5s linear infinite;
 }
+
+/* ========== HERO SECTION ========== */
 .principal{
     min-height: 100vh;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 4rem;
     padding: 12rem 9% 8rem;
     background: linear-gradient(135deg, #ffeef8 0%, #fff 100%);
 }
+
+/* Contenido del hero (texto y botones) - lado izquierdo */
 .principal .contenido{
     flex: 1;
-    animation: fadeInLeft 0.8s ease;
+    max-width: 50%;
 }
+
 .principal .main-header{
     font-size: 6rem;
     color: var(--dark);
@@ -321,39 +294,49 @@ header .fa-bars:hover{
     margin-bottom: 1rem;
     animation: fadeInUp 0.8s ease;
 }
+
 .principal .subheader{
     font-size: 2rem;
     color: var(--gray);
     margin-bottom: 2rem;
+    line-height: 1.6;
     animation: fadeInUp 1s ease;
 }
+
+/* Líneas decorativas de placeholder */
 .lineas-texto{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 3rem;
 }
+
 .linea{
     height: 8px;
     background: linear-gradient(90deg, var(--light-gray) 0%, transparent 100%);
     border-radius: 4px;
     animation: fadeInLeft 1.2s ease;
 }
+
 .linea:first-child{
     width: 80%;
 }
+
 .linea:last-child{
     width: 60%;
     animation-delay: 0.1s;
 }
+
+/* Botones del hero */
 .botones-hero{
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
     animation: fadeInUp 1.3s ease;
 }
+
 .btn{
-    padding: 1.5re, 4rem;
+    padding: 1.5rem 4rem;
     font-size: 1.7rem;
     border-radius: 5rem;
     cursor: pointer;
@@ -361,24 +344,34 @@ header .fa-bars:hover{
     transition: all 0.3s ease;
     border: 2px solid transparent;
 }
+
+.btn-primary{
+    background: var(--pink);
+    color: var(--white);
+}
+
 .btn-primary:hover{
-    background-color: var(--pink-hover);
+    background: var(--pink-hover);
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }
+
 .btn-secondary{
     background: transparent;
     color: var(--dark);
     border: 2px solid var(--dark);
 }
+
 .btn-secondary:hover{
     background: var(--dark);
     color: var(--white);
     transform: translateY(-3px);
 }
-/* Imagen del hero */
-.home .imagen-hero{
+
+/* Imagen del hero - lado derecho */
+.principal .imagen-hero{
     flex: 1;
+    max-width: 45%;
     animation: fadeInRight 0.8s ease;
 }
 
@@ -434,25 +427,30 @@ header .fa-bars:hover{
 .linea-sub:first-child{
     width: 15rem;
 }
+
 .linea-sub:last-child{
     width: 12rem;
 }
+
 /* Grid de características */
 .contenedor-caracteristicas{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 4rem;
 }
+
 .caracteristica-item{
     text-align: center;
     padding: 3rem;
     border-radius: 1rem;
     transition: all 0.3s ease;
 }
+
 .caracteristica-item:hover{
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
 }
+
 /* Icono circular */
 .icono-circular{
     width: 12rem;
@@ -559,11 +557,13 @@ header .fa-bars:hover{
     display: flex;
     gap: 2rem;
     transition: transform 0.5s ease-in-out;
+    will-change: transform;
 }
 
 /* Tarjeta de producto */
 .producto-card{
     min-width: calc(33.333% - 1.4rem); /* 3 tarjetas visibles */
+    flex-shrink: 0; /* Evita que se encojan las tarjetas */
     background: var(--white);
     border-radius: 1rem;
     overflow: hidden;
@@ -870,7 +870,7 @@ header .fa-bars:hover{
         padding: 2rem 5%;
     }
     
-    .home{
+    .principal{
         padding: 12rem 5% 8rem;
     }
     
@@ -976,17 +976,25 @@ header .fa-bars:hover{
     }
     
     /* Hero section responsive */
-    .home{
+    .principal{
         flex-direction: column;
         padding: 12rem 3% 6rem;
         text-align: center;
     }
     
-    .home .main-header{
+    .principal .contenido{
+        max-width: 100%;
+    }
+    
+    .principal .imagen-hero{
+        max-width: 100%;
+    }
+    
+    .principal .main-header{
         font-size: 4rem;
     }
     
-    .home .subheader{
+    .principal .subheader{
         font-size: 1.8rem;
     }
     
@@ -1041,7 +1049,7 @@ header .fa-bars:hover{
         gap: 1rem;
     }
     
-    .home .main-header{
+    .principal .main-header{
         font-size: 3.5rem;
     }
     
@@ -1053,4 +1061,50 @@ header .fa-bars:hover{
     .titulo-seccion{
         font-size: 3rem;
     }
+}
+
+/* ========== ANIMACIONES AL SCROLL ========== */
+/* Estas clases se añadirán con JavaScript */
+.fade-in{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-left{
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-left.visible{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-right{
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-right.visible{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.zoom-in{
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease;
+}
+
+.zoom-in.visible{
+    opacity: 1;
+    transform: scale(1);
 }
