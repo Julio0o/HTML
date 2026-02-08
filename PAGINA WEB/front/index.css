@@ -1,8 +1,7 @@
-/* ========== VARIABLES CSS ========== */
 :root{
     --pink:#e84393;
-    --pink-hover:#d63384;
-    --dark:#333;
+    --pink-hover:#4e1431;
+    --dark:#101010;
     --gray:#666;
     --light-gray:#f0f0f0;
     --white:#fff;
@@ -10,7 +9,6 @@
     --shadow-lg: 0 1rem 2rem rgba(0,0,0,.15);
 }
 
-/* ========== RESET Y CONFIGURACIÓN BASE ========== */
 *{
     margin:0; 
     padding:0;
@@ -23,10 +21,10 @@
 }
 
 html{
-    font-size: 62.5%; /* 1rem = 10px */
-    scroll-behavior: smooth; /* Scroll suave entre secciones */
-    scroll-padding-top: 8rem; /* Espacio para el header fijo */
-    overflow-x: hidden; /* Evita scroll horizontal */
+    font-size: 62.5%; 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 8rem; 
+    overflow-x: hidden; 
 }
 
 body{
@@ -34,9 +32,6 @@ body{
     overflow-x: hidden;
 }
 
-/* ========== ANIMACIONES KEYFRAMES ========== */
-
-/* Animación de entrada desde abajo */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -48,7 +43,6 @@ body{
     }
 }
 
-/* Animación de entrada desde la izquierda */
 @keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -60,7 +54,6 @@ body{
     }
 }
 
-/* Animación de entrada desde la derecha */
 @keyframes fadeInRight {
     from {
         opacity: 0;
@@ -72,7 +65,6 @@ body{
     }
 }
 
-/* Animación de zoom suave */
 @keyframes zoomIn {
     from {
         opacity: 0;
@@ -84,7 +76,6 @@ body{
     }
 }
 
-/* Animación del loader (cubo saltarín) */
 @keyframes jump7456 {
     15% {
         border-bottom-right-radius: 3px;
@@ -104,7 +95,6 @@ body{
     }
 }
 
-/* Animación de sombra del loader */
 @keyframes shadow324 {
     0%, 100% {
         transform: scale(1, 1);
@@ -114,7 +104,6 @@ body{
     }
 }
 
-/* Animación de pulso para botones */
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
@@ -124,21 +113,19 @@ body{
     }
 }
 
-/* ========== HEADER (BARRA DE NAVEGACIÓN) ========== */
 header{
-    position: fixed; /* Fijo en la parte superior */
+    position: fixed; 
     top:0; left:0; right:0;
     background: var(--white);
     padding: 2rem 9%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000; /* Por encima de todo */
+    z-index: 1000; 
     box-shadow: var(--shadow);
     animation: fadeInUp 0.5s ease;
 }
 
-/* Contenedor del logo y loader */
 .logo-container {
     display: flex;
     align-items: center;
@@ -507,7 +494,6 @@ header .fa-bars:hover{
     padding: 8rem 9%;
     background: linear-gradient(135deg, #fff 0%, #ffeef8 100%);
 }
-
 /* Contenedor del carrusel */
 .carrusel-contenedor{
     position: relative;
@@ -515,7 +501,6 @@ header .fa-bars:hover{
     margin: 0 auto;
     padding: 0 6rem;
 }
-
 /* Botones del carrusel */
 .carrusel-btn{
     position: absolute;
@@ -570,7 +555,6 @@ header .fa-bars:hover{
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
 }
-
 .producto-card:hover{
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
