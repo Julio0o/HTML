@@ -1,0 +1,1034 @@
+:root{
+    --pink:#e84393;
+    --pink-hover:#4e1431;
+    --dark:#101010;
+    --gray:#666;
+    --light-gray:#f0f0f0;
+    --white:#fff;
+    --shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --shadow-lg: 0 1rem 2rem rgba(0,0,0,.15);
+}
+*{
+    margin:0; 
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none; 
+    border: none;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+html{
+    font-size: 62.5%; 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 8rem; 
+    overflow-x: hidden; 
+}
+
+body{
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes jump7456 {
+    15% {
+        border-bottom-right-radius: 3px;
+    }
+    25% {
+        transform: translateY(9px) rotate(22.5deg);
+    }
+    50% {
+        transform: translateY(18px) scale(1, .9) rotate(45deg);
+        border-bottom-right-radius: 40px;
+    }
+    75% {
+        transform: translateY(9px) rotate(67.5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(90deg);
+    }
+}
+
+@keyframes shadow324 {
+    0%, 100% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.2, 1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+header{
+    position: fixed; 
+    top:0; left:0; right:0;
+    background: var(--white);
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000; /* Por encima de todo */
+    box-shadow: var(--shadow);
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Contenedor del logo y loader */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    animation: fadeInLeft 0.6s ease;
+}
+
+/* Estilo del logo */
+header .logo{
+    font-size: 3rem;
+    color: var(--dark);
+    font-weight: bold;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+header .logo:hover{
+    transform: scale(1.05);
+}
+
+header .logo span{
+    color: var(--pink);
+}
+
+/* Barra de navegación */
+header .barranav {
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeInUp 0.7s ease;
+}
+
+header .barranav a{
+    font-size: 1.7rem;
+    padding: 0 1rem;
+    color: var(--gray);
+    font-weight: 500;
+    position: relative;
+}
+
+/* Efecto de subrayado animado */
+header .barranav a::after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--pink);
+    transition: width 0.3s ease;
+}
+
+header .barranav a:hover::after{
+    width: 100%;
+}
+
+header .barranav a:hover{
+    color: var(--pink);
+}
+
+/* Iconos del header */
+header .iconos {
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeInRight 0.6s ease;
+}
+
+header .iconos a{
+    font-size: 2.2rem;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+header .iconos a:hover{
+    color: var(--pink);
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Checkbox y botón hamburguesa (ocultos en desktop) */
+header #toggler{
+    display: none;
+}
+
+header .fa-bars{
+    font-size: 3rem;
+    color: var(--dark);
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    border: .1rem solid rgba(0,0,0,.3);
+    display: none;
+    transition: all 0.3s ease;
+}
+
+header .fa-bars:hover{
+    background: var(--pink);
+    color: var(--white);
+}
+
+/* ========== LOADER ANIMATION ========== */
+.loader {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.loader:before {
+    content: '';
+    width: 40px;
+    height: 5px;
+    background: #f0808050;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-radius: 50%;
+    animation: shadow324 0.5s linear infinite;
+}
+
+.loader:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #f08080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    animation: jump7456 0.5s linear infinite;
+}
+.advantages-section {
+    padding: 12rem 9% 8rem;
+    background: linear-gradient(135deg, #fff 0%, #ffeef8 100%);
+    min-height: 100vh;
+}
+
+.advantages-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.advantages-titulo {
+    font-size: 5rem;
+    color: var(--dark);
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Descripción bajo el título */
+.advantages-descripcion {
+    font-size: 1.8rem;
+    color: var(--gray);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 6rem;
+    line-height: 1.8;
+    animation: fadeInUp 1s ease;
+}
+
+/* Grid de 4 tarjetas */
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+/* Tarjeta individual de advantage */
+.advantage-card {
+    background: #8fa5b8; /* Color azul grisáceo como en la imagen */
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1.2s ease;
+}
+
+.advantage-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.2);
+}
+
+/* Imagen placeholder de la tarjeta */
+.advantage-imagen {
+    width: 100%;
+    height: 35rem;
+    background: linear-gradient(135deg, #7d93a6 0%, #9fb0c0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.advantage-imagen i {
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botón central Learn More */
+.advantages-boton-container {
+    text-align: center;
+    animation: fadeInUp 1.4s ease;
+}
+
+.btn-advantages {
+    padding: 1.8rem 5rem;
+    font-size: 1.8rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    font-weight: 600;
+    background: transparent;
+    color: var(--dark);
+    border: 3px solid var(--dark);
+    transition: all 0.3s ease;
+}
+
+.btn-advantages:hover {
+    background: var(--dark);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+/* ========== SECCIÓN VALUE PROPOSITIONS (TEXTO + IMAGEN) ========== */
+.proposito-section {
+    padding: 8rem 9%;
+    background: var(--white);
+    position: relative;
+}
+
+.proposito-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+/* Columna izquierda - Texto */
+.proposito-texto {
+    flex: 1;
+    animation: fadeInLeft 0.8s ease;
+}
+
+.proposito-titulo {
+    font-size: 4.5rem;
+    color: var(--dark);
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+}
+
+.proposito-descripcion {
+    font-size: 1.8rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 4rem;
+}
+
+/* Features en dos columnas */
+.proposito-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.feature-columna {
+    animation: fadeInUp 1s ease;
+}
+
+.feature-titulo {
+    font-size: 2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.feature-texto {
+    font-size: 1.6rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Columna derecha - Imagen grande */
+.proposito-imagen {
+    flex: 1;
+    animation: fadeInRight 0.8s ease;
+}
+
+.proposito-imagen-container {
+    width: 100%;
+    height: 55rem;
+    background: #8fa5b8; /* Color azul grisáceo */
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.proposito-imagen-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+    pointer-events: none;
+}
+
+.proposito-imagen-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3rem 5rem rgba(0,0,0,0.2);
+}
+
+.proposito-imagen-container i {
+    font-size: 15rem;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+}
+
+/* ========== LINK ACTIVO EN EL MENÚ ========== */
+.barranav a.active {
+    color: var(--pink);
+    font-weight: 600;
+}
+
+.barranav a.active::after {
+    width: 100%;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets */
+@media (max-width: 991px) {
+    .advantages-titulo {
+        font-size: 4rem;
+    }
+
+    .proposito-titulo {
+        font-size: 3.5rem;
+    }
+
+    .advantages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .proposito-container {
+        gap: 4rem;
+    }
+
+    .proposito-imagen-container {
+        height: 45rem;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .advantages-section {
+        padding: 10rem 5% 6rem;
+    }
+
+    .advantages-titulo {
+        font-size: 3.5rem;
+    }
+
+    .advantages-descripcion {
+        font-size: 1.6rem;
+        margin-bottom: 4rem;
+    }
+
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .advantage-imagen {
+        height: 28rem;
+    }
+
+    .advantage-imagen i {
+        font-size: 6rem;
+    }
+
+    .btn-advantages {
+        padding: 1.5rem 4rem;
+        font-size: 1.6rem;
+    }
+
+    /* Proposito section responsive */
+    .proposito-section {
+        padding: 6rem 5%;
+    }
+
+    .proposito-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .proposito-titulo {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .proposito-descripcion {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .proposito-features {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .feature-titulo {
+        font-size: 1.8rem;
+    }
+
+    .feature-texto {
+        font-size: 1.5rem;
+    }
+
+    .proposito-imagen-container {
+        height: 35rem;
+    }
+
+    .proposito-imagen-container i {
+        font-size: 10rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 450px) {
+    .advantages-titulo {
+        font-size: 3rem;
+    }
+
+    .advantages-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .proposito-titulo {
+        font-size: 2.5rem;
+    }
+
+    .proposito-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .advantage-imagen {
+        height: 25rem;
+    }
+
+    .proposito-imagen-container {
+        height: 30rem;
+    }
+
+    .btn-advantages {
+        padding: 1.2rem 3rem;
+        font-size: 1.4rem;
+    }
+}
+
+/* ========== ANIMACIONES ADICIONALES ========== */
+.advantage-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.advantage-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.advantage-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.advantage-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Efecto de ondas en las tarjetas */
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.advantage-card:hover .advantage-imagen::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    animation: wave 2s infinite;
+}
+/* ========== FOOTER ========== */
+.footer{
+    background: var(--dark);
+    color: var(--white);
+    padding: 6rem 9% 2rem;
+}
+
+.footer-contenido{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* Logo del footer */
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.loader-footer{
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.loader-footer:before {
+    content: '';
+    width: 30px;
+    height: 4px;
+    background: #f0808050;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    border-radius: 50%;
+    animation: shadow324 0.5s linear infinite;
+}
+
+.loader-footer:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #f08080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    animation: jump7456 0.5s linear infinite;
+}
+
+.footer-logo h3{
+    font-size: 2.5rem;
+}
+
+.footer-logo span{
+    color: var(--pink);
+}
+
+/* Líneas del footer */
+.footer-lineas{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.linea-footer{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+.linea-footer:nth-child(1){
+    width: 100%;
+}
+
+.linea-footer:nth-child(2){
+    width: 80%;
+}
+
+.linea-footer:nth-child(3){
+    width: 60%;
+}
+
+/* Títulos de columnas */
+.footer-titulo{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--white);
+}
+
+/* Links del footer */
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-linea{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    width: 70%;
+    transition: all 0.3s ease;
+}
+
+.link-linea:hover{
+    background: var(--pink);
+    width: 100%;
+}
+
+/* Redes sociales */
+.redes-sociales{
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.redes-sociales a{
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.redes-sociales a:hover{
+    background: var(--pink);
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* Bottom del footer */
+.footer-bottom{
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+}
+
+.copyright-lineas{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.linea-copy{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    width: 15rem;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets */
+@media (max-width:991px) {
+    html{
+        font-size: 55%;
+    }
+    
+    header{
+        padding: 2rem 5%;
+    }
+    
+    .principal{
+        padding: 12rem 5% 8rem;
+    }
+    
+    .caracteristicas,
+    .productos,
+    .cta-section,
+    .footer{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .producto-card{
+        min-width: calc(50% - 1rem); /* 2 tarjetas en tablets */
+    }
+}
+
+/* Móviles */
+@media (max-width:768px) {
+    header{
+        padding: 2rem 3%;
+        flex-wrap: wrap;
+    }
+    
+    /* Hamburguesa visible */
+    header .fa-bars{
+        display: block;
+        font-size: 2.5rem;
+        order: 1;
+    }
+    
+    /* Logo centrado */
+    .logo-container{
+        order: 2;
+        gap: 1.5rem;
+    }
+    
+    header .logo{
+        font-size: 2.8rem;
+    }
+    
+    .loader {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .loader:before {
+        width: 35px;
+        top: 45px;
+    }
+    
+    /* Iconos a la derecha */
+    header .iconos{
+        gap: 2rem;
+        order: 3;
+    }
+    
+    header .iconos a{
+        font-size: 2.2rem;
+    }
+    
+    /* Menú desplegable */
+    header .barranav{
+        order: 4;
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        background: var(--light-gray);
+        padding: 1.5rem;
+        margin-left: -3%;
+        margin-right: -3%;
+        max-height: 500px;
+        opacity: 1;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    }
+    
+    /* Ocultar menú */
+    header #toggler:checked ~ .barranav{
+        max-height: 0;
+        opacity: 0;
+        padding: 0 1.5rem;
+        overflow: hidden;
+    }
+    
+    header .barranav a{
+        display: block;
+        margin: 0 0 1.5rem 0;
+        padding: 2rem;
+        background: var(--white);
+        border-radius: .5rem;
+        font-size: 1.8rem;
+        color: var(--gray);
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.05);
+        text-align: center;
+    }
+    
+    header .barranav a:last-child{
+        margin-bottom: 0;
+    }
+    
+    header .barranav a::after{
+        display: none;
+    }
+    
+    /* Hero section responsive */
+    .principal{
+        flex-direction: column;
+        padding: 12rem 3% 6rem;
+        text-align: center;
+    }
+    
+    .principal .contenido{
+        max-width: 100%;
+    }
+    
+    .principal .imagen-hero{
+        max-width: 100%;
+    }
+    
+    .principal .main-header{
+        font-size: 4rem;
+    }
+    
+    .principal .subheader{
+        font-size: 1.8rem;
+    }
+    
+    .botones-hero{
+        justify-content: center;
+    }
+    
+    .placeholder-imagen{
+        height: 35rem;
+    }
+    
+    /* Carrusel responsive */
+    .carrusel-contenedor{
+        padding: 0 5rem;
+    }
+    
+    .producto-card{
+        min-width: 100%; /* 1 tarjeta en móvil */
+    }
+    
+    .carrusel-btn{
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width:450px) {
+    html{
+        font-size: 50%;
+    }
+    
+    header{
+        padding: 1.5rem 3%;
+    }
+    
+    header .logo{
+        font-size: 2.5rem;
+    }
+    
+    .loader {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .loader:before {
+        width: 30px;
+        top: 40px;
+    }
+    
+    .logo-container{
+        gap: 1rem;
+    }
+    
+    .principal .main-header{
+        font-size: 3.5rem;
+    }
+    
+    .btn{
+        padding: 1.2rem 3rem;
+        font-size: 1.5rem;
+    }
+    
+    .titulo-seccion{
+        font-size: 3rem;
+    }
+}
+
+/* ========== ANIMACIONES AL SCROLL ========== */
+/* Estas clases se añadirán con JavaScript */
+.fade-in{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-left{
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-left.visible{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.fade-in-right{
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-right.visible{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.zoom-in{
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s ease;
+}
+
+.zoom-in.visible{
+    opacity: 1;
+    transform: scale(1);
+}
