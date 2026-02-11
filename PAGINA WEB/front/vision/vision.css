@@ -1,0 +1,779 @@
+:root{
+    --pink:#e84393;
+    --pink-hover:#4e1431;
+    --dark:#101010;
+    --gray:#666;
+    --light-gray:#f0f0f0;
+    --white:#fff;
+    --shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --shadow-lg: 0 1rem 2rem rgba(0,0,0,.15);
+}
+
+*{
+    margin:0; 
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none; 
+    border: none;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+html{
+    font-size: 62.5%; 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 8rem; 
+    overflow-x: hidden; 
+}
+
+body{
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes jump7456 {
+    15% {
+        border-bottom-right-radius: 3px;
+    }
+    25% {
+        transform: translateY(9px) rotate(22.5deg);
+    }
+    50% {
+        transform: translateY(18px) scale(1, .9) rotate(45deg);
+        border-bottom-right-radius: 40px;
+    }
+    75% {
+        transform: translateY(9px) rotate(67.5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(90deg);
+    }
+}
+
+@keyframes shadow324 {
+    0%, 100% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.2, 1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+header{
+    position: fixed; 
+    top:0; left:0; right:0;
+    background: var(--white);
+    padding: 2rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000; 
+    box-shadow: var(--shadow);
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Contenedor del logo y loader */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    animation: fadeInLeft 0.6s ease;
+}
+
+/* Estilo del logo */
+header .logo{
+    font-size: 3rem;
+    color: var(--dark);
+    font-weight: bold;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+header .logo:hover{
+    transform: scale(1.05);
+}
+
+header .logo span{
+    color: var(--pink);
+}
+
+/* Barra de navegación */
+header .barranav {
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeInUp 0.7s ease;
+}
+
+header .barranav a{
+    font-size: 1.7rem;
+    padding: 0 1rem;
+    color: var(--gray);
+    font-weight: 500;
+    position: relative;
+}
+
+/* Efecto de subrayado animado */
+header .barranav a::after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--pink);
+    transition: width 0.3s ease;
+}
+
+header .barranav a:hover::after{
+    width: 100%;
+}
+
+header .barranav a:hover{
+    color: var(--pink);
+}
+
+/* Iconos del header */
+header .iconos {
+    display: flex;
+    gap: 2.5rem;
+    animation: fadeInRight 0.6s ease;
+}
+
+header .iconos a{
+    font-size: 2.2rem;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+header .iconos a:hover{
+    color: var(--pink);
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Checkbox y botón hamburguesa (ocultos en desktop) */
+header #toggler{
+    display: none;
+}
+
+header .fa-bars{
+    font-size: 3rem;
+    color: var(--dark);
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    cursor: pointer;
+    border: .1rem solid rgba(0,0,0,.3);
+    display: none;
+    transition: all 0.3s ease;
+}
+
+header .fa-bars:hover{
+    background: var(--pink);
+    color: var(--white);
+}
+
+/* ========== LOADER ANIMATION ========== */
+.loader {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.loader:before {
+    content: '';
+    width: 40px;
+    height: 5px;
+    background: #f0808050;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-radius: 50%;
+    animation: shadow324 0.5s linear infinite;
+}
+
+.loader:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #f08080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    animation: jump7456 0.5s linear infinite;
+}
+
+.about-hero {
+    padding: 15rem 9% 8rem;
+    background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de texto grande de fondo */
+.about-hero::before {
+    content: 'comfort';
+    position: absolute;
+    top: 50%;
+    right: -5%;
+    transform: translateY(-50%);
+    font-size: 20rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.02);
+    letter-spacing: 2rem;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
+}
+
+.about-hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.about-hero-titulo {
+    font-size: 6rem;
+    color: var(--dark);
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease;
+}
+
+.about-hero-descripcion {
+    font-size: 1.8rem;
+    color: var(--gray);
+    line-height: 1.8;
+    animation: fadeInUp 1s ease;
+}
+
+/* ========== SECCIONES DE PRODUCTOS ALTERNADAS ========== */
+.producto-section {
+    padding: 8rem 9%;
+    background: var(--white);
+}
+
+/* Alternar el color de fondo */
+.producto-section:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.producto-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+/* ========== COLUMNA DE IMAGEN ========== */
+.producto-imagen-col {
+    flex: 1;
+}
+
+.producto-imagen-box {
+    width: 100%;
+    height: 50rem;
+    background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.producto-imagen-box::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+}
+
+.producto-imagen-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.producto-imagen-box i {
+    font-size: 12rem;
+    color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* ========== COLUMNA DE TEXTO ========== */
+.producto-texto-col {
+    flex: 1;
+}
+
+.producto-titulo {
+    font-size: 4rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+}
+
+.producto-descripcion {
+    font-size: 1.6rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.producto-descripcion:last-of-type {
+    margin-bottom: 3rem;
+}
+
+/* Botón de Learn More */
+.btn-producto-detalle {
+    padding: 1.5rem 4.5rem;
+    font-size: 1.6rem;
+    background: #4a7c9e; /* Color azul como en la imagen */
+    color: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem rgba(74, 124, 158, 0.3);
+}
+
+.btn-producto-detalle:hover {
+    background: #3d6582;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(74, 124, 158, 0.4);
+}
+
+/* ========== ANIMACIONES AL CARGAR ========== */
+
+/* Producto con imagen a la izquierda */
+.producto-izquierda .producto-imagen-col {
+    animation: fadeInLeft 0.8s ease;
+}
+
+.producto-izquierda .producto-texto-col {
+    animation: fadeInRight 0.8s ease;
+}
+
+/* Producto con imagen a la derecha */
+.producto-derecha .producto-texto-col {
+    animation: fadeInLeft 0.8s ease;
+}
+
+.producto-derecha .producto-imagen-col {
+    animation: fadeInRight 0.8s ease;
+}
+
+/* ========== LINK ACTIVO EN EL MENÚ ========== */
+.barranav a.active {
+    color: var(--pink);
+    font-weight: 600;
+}
+
+.barranav a.active::after {
+    width: 100%;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets */
+@media (max-width: 991px) {
+    .about-hero {
+        padding: 12rem 5% 6rem;
+    }
+
+    .about-hero-titulo {
+        font-size: 4.5rem;
+    }
+
+    .about-hero-descripcion {
+        font-size: 1.6rem;
+    }
+
+    .about-hero::before {
+        font-size: 15rem;
+    }
+
+    .producto-section {
+        padding: 6rem 5%;
+    }
+
+    .producto-container {
+        gap: 4rem;
+    }
+
+    .producto-titulo {
+        font-size: 3.5rem;
+    }
+
+    .producto-imagen-box {
+        height: 40rem;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 10rem 5% 5rem;
+    }
+
+    .about-hero-titulo {
+        font-size: 3.5rem;
+    }
+
+    .about-hero-descripcion {
+        font-size: 1.5rem;
+    }
+
+    .about-hero::before {
+        font-size: 10rem;
+        right: -10%;
+    }
+
+    .producto-section {
+        padding: 5rem 5%;
+    }
+
+    /* Apilar las columnas en móvil */
+    .producto-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    /* En móvil, siempre imagen arriba, texto abajo */
+    .producto-derecha .producto-container {
+        flex-direction: column-reverse;
+    }
+
+    .producto-titulo {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .producto-descripcion {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .producto-imagen-box {
+        height: 35rem;
+    }
+
+    .producto-imagen-box i {
+        font-size: 10rem;
+    }
+
+    .btn-producto-detalle {
+        width: 100%;
+        padding: 1.5rem 2rem;
+    }
+
+    /* Centrar botón en móvil */
+    .producto-texto-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 450px) {
+    .about-hero-titulo {
+        font-size: 3rem;
+    }
+
+    .about-hero-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .about-hero::before {
+        display: none;
+    }
+
+    .producto-titulo {
+        font-size: 2.5rem;
+    }
+
+    .producto-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .producto-imagen-box {
+        height: 30rem;
+    }
+
+    .producto-imagen-box i {
+        font-size: 8rem;
+    }
+
+    .btn-producto-detalle {
+        font-size: 1.5rem;
+        padding: 1.3rem 2rem;
+    }
+}
+
+/* ========== ANIMACIONES Y EFECTOS ESPECIALES ========== */
+
+/* Efecto parallax sutil en las imágenes */
+@media (min-width: 769px) {
+    .producto-imagen-box {
+        transition: transform 0.3s ease;
+    }
+
+    .producto-section:hover .producto-imagen-box {
+        transform: translateY(-5px) scale(1.01);
+    }
+}
+
+/* Animación de aparición de párrafos */
+.producto-descripcion {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.producto-descripcion:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.producto-descripcion:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.producto-descripcion:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+/* Efecto de brillo en el botón */
+.btn-producto-detalle {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-producto-detalle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-producto-detalle:hover::before {
+    left: 100%;
+}
+.footer{
+    background: var(--dark);
+    color: var(--white);
+    padding: 6rem 9% 2rem;
+}
+
+.footer-contenido{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+/* Logo del footer */
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.loader-footer{
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.loader-footer:before {
+    content: '';
+    width: 30px;
+    height: 4px;
+    background: #f0808050;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    border-radius: 50%;
+    animation: shadow324 0.5s linear infinite;
+}
+
+.loader-footer:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #f08080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    animation: jump7456 0.5s linear infinite;
+}
+
+.footer-logo h3{
+    font-size: 2.5rem;
+}
+
+.footer-logo span{
+    color: var(--pink);
+}
+
+/* Líneas del footer */
+.footer-lineas{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.linea-footer{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+.linea-footer:nth-child(1){
+    width: 100%;
+}
+
+.linea-footer:nth-child(2){
+    width: 80%;
+}
+
+.linea-footer:nth-child(3){
+    width: 60%;
+}
+
+/* Títulos de columnas */
+.footer-titulo{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--white);
+}
+
+/* Links del footer */
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-linea{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    width: 70%;
+    transition: all 0.3s ease;
+}
+
+.link-linea:hover{
+    background: var(--pink);
+    width: 100%;
+}
+
+/* Redes sociales */
+.redes-sociales{
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.redes-sociales a{
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.redes-sociales a:hover{
+    background: var(--pink);
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* Bottom del footer */
+.footer-bottom{
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+}
+
+.copyright-lineas{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.linea-copy{
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    width: 15rem;
+}

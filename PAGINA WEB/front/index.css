@@ -1,9 +1,9 @@
 :root{
-    --pink:#e84393;
+    --pink:#8B004B;
     --pink-hover:#4e1431;
     --dark:#101010;
     --gray:#666;
-    --light-gray:#f0f0f0;
+    --light-gray:#F8F8FA;
     --white:#fff;
     --shadow: 0 .5rem 1rem rgba(0,0,0,.1);
     --shadow-lg: 0 1rem 2rem rgba(0,0,0,.15);
@@ -116,7 +116,7 @@ body{
 header{
     position: fixed; 
     top:0; left:0; right:0;
-    background: var(--white);
+    background:#f2f0e6;
     padding: 2rem 9%;
     display: flex;
     align-items: center;
@@ -137,7 +137,7 @@ header{
 /* Estilo del logo */
 header .logo{
     font-size: 3rem;
-    color: var(--dark);
+    color: #5b0e14;
     font-weight: bold;
     white-space: nowrap;
     transition: all 0.3s ease;
@@ -200,7 +200,7 @@ header .iconos a{
 }
 
 header .iconos a:hover{
-    color: var(--pink);
+    color: #e37eaf;
     transform: scale(1.2) rotate(10deg);
 }
 
@@ -265,7 +265,7 @@ header .fa-bars:hover{
     justify-content: space-between;
     gap: 4rem;
     padding: 12rem 9% 8rem;
-    background: linear-gradient(135deg, #ffeef8 0%, #fff 100%);
+    background:#f3e7d9;
 }
 
 /* Contenido del hero (texto y botones) - lado izquierdo */
@@ -301,7 +301,6 @@ header .fa-bars:hover{
 
 .linea{
     height: 8px;
-    background: linear-gradient(90deg, var(--light-gray) 0%, transparent 100%);
     border-radius: 4px;
     animation: fadeInLeft 1.2s ease;
 }
@@ -334,7 +333,7 @@ header .fa-bars:hover{
 }
 
 .btn-primary{
-    background: var(--pink);
+    background:#f44d01;
     color: var(--white);
 }
 
@@ -345,9 +344,8 @@ header .fa-bars:hover{
 }
 
 .btn-secondary{
-    background: transparent;
-    color: var(--dark);
-    border: 2px solid var(--dark);
+    background:#f44d01;
+    color:#f2f0e6;
 }
 
 .btn-secondary:hover{
@@ -387,7 +385,7 @@ header .fa-bars:hover{
 /* ========== SECCIÓN DE CARACTERÍSTICAS ========== */
 .caracteristicas{
     padding: 8rem 9%;
-    background: var(--white);
+    background:#d8c7b5;
 }
 
 .titulo-seccion{
@@ -478,7 +476,7 @@ header .fa-bars:hover{
 
 .linea-desc{
     height: 6px;
-    background: var(--light-gray);
+    background:#f3e7d9;
     border-radius: 3px;
 }
 

@@ -1,0 +1,524 @@
+.contacto-hero {
+    padding: 12rem 9% 6rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.contacto-hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+/* Texto del hero */
+.hero-texto {
+    flex: 1;
+    animation: fadeInLeft 0.8s ease;
+}
+
+.hero-titulo {
+    font-size: 5.5rem;
+    color: var(--dark);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.hero-descripcion {
+    font-size: 1.8rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.btn-hero {
+    padding: 1.8rem 4.5rem;
+    font-size: 1.7rem;
+    background: #8b9d6f; /* Color verde oliva como en la imagen */
+    color: var(--white);
+    border: none;
+    border-radius: 5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0.5rem 1.5rem rgba(139, 157, 111, 0.3);
+}
+
+.btn-hero:hover {
+    background: #7a8b5e;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(139, 157, 111, 0.4);
+}
+
+/* Imagen del hero */
+.hero-imagen {
+    flex: 1;
+    animation: fadeInRight 0.8s ease;
+}
+
+.hero-imagen-placeholder {
+    width: 100%;
+    height: 45rem;
+    background: linear-gradient(135deg, #d0d0d0 0%, #b8b8b8 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.hero-imagen-placeholder:hover {
+    transform: scale(1.02) rotate(-2deg);
+}
+
+.hero-imagen-placeholder i {
+    font-size: 15rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========== SECCIÓN INFORMACIÓN ADICIONAL ========== */
+.info-adicional {
+    padding: 6rem 9%;
+    background: #e9ecef;
+    text-align: center;
+}
+
+.info-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.info-titulo {
+    font-size: 3.5rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.info-descripcion {
+    font-size: 1.6rem;
+    color: var(--gray);
+    line-height: 1.8;
+}
+
+/* ========== SECCIÓN "POR QUÉ ELEGIRNOS" ========== */
+.porque-elegirnos {
+    padding: 8rem 9%;
+    background: var(--white);
+}
+
+.elegirnos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.elegirnos-item {
+    text-align: center;
+    padding: 3rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.elegirnos-item:hover {
+    transform: translateY(-10px);
+}
+
+/* Icono */
+.elegirnos-icono {
+    width: 8rem;
+    height: 8rem;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.elegirnos-icono i {
+    font-size: 5rem;
+    color: var(--dark);
+}
+
+.elegirnos-titulo {
+    font-size: 2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.elegirnos-descripcion {
+    font-size: 1.5rem;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* ========== SECCIÓN DE FORMAS DE CONTACTO (TARJETAS) ========== */
+.formas-contacto {
+    padding: 8rem 9%;
+    background: #f8f9fa;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 4rem auto 0;
+}
+
+/* Tarjeta de contacto */
+.contacto-card {
+    background: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease;
+}
+
+.contacto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de la tarjeta */
+.contacto-card-imagen {
+    width: 100%;
+    height: 25rem;
+    background: linear-gradient(135deg, #e0e0e0 0%, #c8c8c8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacto-card-imagen i {
+    font-size: 10rem;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+/* Información de la tarjeta */
+.contacto-card-info {
+    padding: 2.5rem;
+}
+
+.contacto-card-titulo {
+    font-size: 2.2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.contacto-card-descripcion {
+    font-size: 1.5rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.btn-contacto-card {
+    width: 100%;
+    padding: 1.3rem 2rem;
+    background: transparent;
+    color: var(--dark);
+    border: 2px solid var(--dark);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-contacto-card:hover {
+    background: var(--dark);
+    color: var(--white);
+}
+
+/* ========== SECCIÓN DE REDES SOCIALES ========== */
+.redes-sociales-section {
+    padding: 8rem 9%;
+    background: var(--white);
+    text-align: center;
+}
+
+.redes-descripcion {
+    font-size: 1.8rem;
+    color: var(--gray);
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+}
+
+.redes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjeta de red social */
+.red-social-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.red-social-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+/* Icono de red social */
+.red-social-icono {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    transition: all 0.3s ease;
+}
+
+.red-social-card:hover .red-social-icono {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.red-social-icono i {
+    font-size: 4.5rem;
+    color: var(--white);
+}
+
+/* Colores específicos de cada red social */
+.red-social-icono.facebook {
+    background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%);
+}
+
+.red-social-icono.instagram {
+    background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%);
+}
+
+.red-social-icono.twitter {
+    background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+}
+
+.red-social-icono.linkedin {
+    background: linear-gradient(135deg, #0077b5 0%, #005582 100%);
+}
+
+.red-social-nombre {
+    font-size: 2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.red-social-seguidores {
+    font-size: 1.5rem;
+    color: var(--gray);
+}
+
+/* ========== LINK ACTIVO EN EL MENÚ ========== */
+.barranav a.active {
+    color: var(--pink);
+    font-weight: 600;
+}
+
+.barranav a.active::after {
+    width: 100%;
+}
+
+/* ========== ANIMACIONES ========== */
+.elegirnos-item:nth-child(1) {
+    animation: fadeInUp 0.8s ease;
+    animation-delay: 0.1s;
+}
+
+.elegirnos-item:nth-child(2) {
+    animation: fadeInUp 0.8s ease;
+    animation-delay: 0.2s;
+}
+
+.elegirnos-item:nth-child(3) {
+    animation: fadeInUp 0.8s ease;
+    animation-delay: 0.3s;
+}
+
+.contacto-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.contacto-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.contacto-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets */
+@media (max-width: 991px) {
+    .hero-titulo {
+        font-size: 4.5rem;
+    }
+
+    .hero-descripcion {
+        font-size: 1.6rem;
+    }
+
+    .hero-imagen-placeholder {
+        height: 40rem;
+    }
+
+    .info-titulo {
+        font-size: 3rem;
+    }
+
+    .contacto-hero-container {
+        gap: 4rem;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .contacto-hero {
+        padding: 10rem 5% 5rem;
+    }
+
+    .contacto-hero-container {
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-titulo {
+        font-size: 3.5rem;
+    }
+
+    .hero-descripcion {
+        font-size: 1.5rem;
+    }
+
+    .hero-imagen-placeholder {
+        height: 35rem;
+    }
+
+    .hero-imagen-placeholder i {
+        font-size: 12rem;
+    }
+
+    .btn-hero {
+        width: 100%;
+    }
+
+    .info-adicional {
+        padding: 5rem 5%;
+    }
+
+    .info-titulo {
+        font-size: 2.8rem;
+    }
+
+    .info-descripcion {
+        font-size: 1.5rem;
+    }
+
+    .porque-elegirnos {
+        padding: 6rem 5%;
+    }
+
+    .elegirnos-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .formas-contacto {
+        padding: 6rem 5%;
+    }
+
+    .contacto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .redes-sociales-section {
+        padding: 6rem 5%;
+    }
+
+    .redes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 450px) {
+    .hero-titulo {
+        font-size: 3rem;
+    }
+
+    .hero-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .hero-imagen-placeholder {
+        height: 30rem;
+    }
+
+    .hero-imagen-placeholder i {
+        font-size: 10rem;
+    }
+
+    .info-titulo {
+        font-size: 2.5rem;
+    }
+
+    .info-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .elegirnos-icono {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .elegirnos-icono i {
+        font-size: 4rem;
+    }
+
+    .elegirnos-titulo {
+        font-size: 1.8rem;
+    }
+
+    .elegirnos-descripcion {
+        font-size: 1.4rem;
+    }
+
+    .contacto-card-imagen {
+        height: 22rem;
+    }
+
+    .contacto-card-imagen i {
+        font-size: 8rem;
+    }
+
+    .redes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .red-social-icono {
+        width: 9rem;
+        height: 9rem;
+    }
+
+    .red-social-icono i {
+        font-size: 4rem;
+    }
+}
