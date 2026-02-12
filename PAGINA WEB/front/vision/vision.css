@@ -116,7 +116,7 @@ body{
 header{
     position: fixed; 
     top:0; left:0; right:0;
-    background: var(--white);
+    background:#f2f0e6;
     padding: 2rem 9%;
     display: flex;
     align-items: center;
@@ -125,19 +125,15 @@ header{
     box-shadow: var(--shadow);
     animation: fadeInUp 0.5s ease;
 }
-
-/* Contenedor del logo y loader */
 .logo-container {
     display: flex;
     align-items: center;
     gap: 2rem;
     animation: fadeInLeft 0.6s ease;
 }
-
-/* Estilo del logo */
 header .logo{
     font-size: 3rem;
-    color: var(--dark);
+    color:#5b0e14;
     font-weight: bold;
     white-space: nowrap;
     transition: all 0.3s ease;
@@ -150,8 +146,6 @@ header .logo:hover{
 header .logo span{
     color: var(--pink);
 }
-
-/* Barra de navegación */
 header .barranav {
     display: flex;
     gap: 2.5rem;
@@ -165,8 +159,6 @@ header .barranav a{
     font-weight: 500;
     position: relative;
 }
-
-/* Efecto de subrayado animado */
 header .barranav a::after{
     content: '';
     position: absolute;
@@ -186,7 +178,6 @@ header .barranav a:hover{
     color: var(--pink);
 }
 
-/* Iconos del header */
 header .iconos {
     display: flex;
     gap: 2.5rem;
@@ -204,7 +195,6 @@ header .iconos a:hover{
     transform: scale(1.2) rotate(10deg);
 }
 
-/* Checkbox y botón hamburguesa (ocultos en desktop) */
 header #toggler{
     display: none;
 }
@@ -225,7 +215,6 @@ header .fa-bars:hover{
     color: var(--white);
 }
 
-/* ========== LOADER ANIMATION ========== */
 .loader {
     width: 40px;
     height: 40px;
@@ -259,25 +248,10 @@ header .fa-bars:hover{
 
 .about-hero {
     padding: 15rem 9% 8rem;
-    background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+    background:#dad3d3;
     text-align: center;
     position: relative;
     overflow: hidden;
-}
-
-/* Efecto de texto grande de fondo */
-.about-hero::before {
-    content: 'comfort';
-    position: absolute;
-    top: 50%;
-    right: -5%;
-    transform: translateY(-50%);
-    font-size: 20rem;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.02);
-    letter-spacing: 2rem;
-    pointer-events: none;
-    font-family: Arial, sans-serif;
 }
 
 .about-hero-container {
@@ -297,22 +271,17 @@ header .fa-bars:hover{
 
 .about-hero-descripcion {
     font-size: 1.8rem;
-    color: var(--gray);
+    color:#101010;
     line-height: 1.8;
     animation: fadeInUp 1s ease;
 }
-
-/* ========== SECCIONES DE PRODUCTOS ALTERNADAS ========== */
 .producto-section {
     padding: 8rem 9%;
-    background: var(--white);
+    background:#cac0ba;
 }
-
-/* Alternar el color de fondo */
 .producto-section:nth-child(even) {
-    background: #f9f9f9;
+    background: #baadad;
 }
-
 .producto-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -320,8 +289,6 @@ header .fa-bars:hover{
     align-items: center;
     gap: 6rem;
 }
-
-/* ========== COLUMNA DE IMAGEN ========== */
 .producto-imagen-col {
     flex: 1;
 }
@@ -359,15 +326,13 @@ header .fa-bars:hover{
     color: rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
-
-/* ========== COLUMNA DE TEXTO ========== */
 .producto-texto-col {
     flex: 1;
 }
 
 .producto-titulo {
     font-size: 4rem;
-    color: var(--dark);
+    color:#101010;
     font-weight: 700;
     margin-bottom: 2.5rem;
     line-height: 1.2;
@@ -375,7 +340,7 @@ header .fa-bars:hover{
 
 .producto-descripcion {
     font-size: 1.6rem;
-    color: var(--gray);
+    color:#0d0303;
     line-height: 1.8;
     margin-bottom: 2rem;
 }
