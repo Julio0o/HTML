@@ -1,5 +1,5 @@
 :root{
-    --pink:#8079a7;
+    --pink:#8B004B;
     --pink-hover:#4e1431;
     --dark:#101010;
     --gray:#666;
@@ -116,16 +116,16 @@ body{
 header{
     position: fixed; 
     top:0; left:0; right:0;
-    background: var(--white);
+    background:#f2f0e6;
     padding: 2rem 9%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000; /* Por encima de todo */
+    z-index: 1000; 
     box-shadow: var(--shadow);
     animation: fadeInUp 0.5s ease;
 }
-/* ========== LOADER ANIMATION ========== */
+
 .loader {
     width: 40px;
     height: 40px;
@@ -156,7 +156,6 @@ header{
     border-radius: 4px;
     animation: jump7456 0.5s linear infinite;
 }
-/* Contenedor del logo y loader */
 .logo-container {
     display: flex;
     align-items: center;
@@ -164,10 +163,9 @@ header{
     animation: fadeInLeft 0.6s ease;
 }
 
-/* Estilo del logo */
 header .logo{
     font-size: 3rem;
-    color: var(--dark);
+    color:#4e1431;
     font-weight: bold;
     white-space: nowrap;
     transition: all 0.3s ease;
@@ -181,7 +179,6 @@ header .logo span{
     color: var(--pink);
 }
 
-/* Barra de navegación */
 header .barranav {
     display: flex;
     gap: 2.5rem;
@@ -196,7 +193,6 @@ header .barranav a{
     position: relative;
 }
 
-/* Efecto de subrayado animado */
 header .barranav a::after{
     content: '';
     position: absolute;
@@ -215,8 +211,6 @@ header .barranav a:hover::after{
 header .barranav a:hover{
     color: var(--pink);
 }
-
-/* Iconos del header */
 header .iconos {
     display: flex;
     gap: 2.5rem;
@@ -234,7 +228,6 @@ header .iconos a:hover{
     transform: scale(1.2) rotate(10deg);
 }
 
-/* Checkbox y botón hamburguesa (ocultos en desktop) */
 header #toggler{
     display: none;
 }
@@ -256,7 +249,7 @@ header .fa-bars:hover{
 }
 .advantages-section {
     padding: 12rem 9% 8rem;
-    background: linear-gradient(135deg, #fff 0%, #ffeef8 100%);
+    background:#fbf7e7;
     min-height: 100vh;
 }
 
@@ -265,7 +258,6 @@ header .fa-bars:hover{
     margin: 0 auto;
 }
 
-/* Título de Advantages */
 .advantages-titulo {
     font-size: 5rem;
     color: var(--dark);
@@ -275,18 +267,15 @@ header .fa-bars:hover{
     animation: fadeInUp 0.8s ease;
 }
 
-/* Descripción bajo el título */
 .advantages-descripcion {
     font-size: 1.8rem;
-    color: var(--gray);
+    color:#101010;
     text-align: center;
     max-width: 800px;
     margin: 0 auto 6rem;
     line-height: 1.8;
     animation: fadeInUp 1s ease;
 }
-
-/* Grid de 3 tarjetas */
 .advantages-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -297,11 +286,10 @@ header .fa-bars:hover{
     margin-right: auto;
 }
 
-/* Tarjeta individual de advantage */
 .advantage-card {
     text-align: center;
-    padding: 3rem;
-    border-radius: 1rem;
+    padding: 3.5rem;
+    border-radius: 3rem;
     transition: all 0.3s ease;
     animation: fadeInUp 1.2s ease;
 }
@@ -311,89 +299,41 @@ header .fa-bars:hover{
     box-shadow: 0 2rem 4rem rgba(0,0,0,0.15);
 }
 
-/* Icono circular con animación de rotación */
 .icono-circular-advantage {
     width: 14rem;
     height: 14rem;
-    background: linear-gradient(135deg, var(--pink) 0%, #ff6b9d 100%);
+    background:#310f10;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 2.5rem;
     transition: all 0.5s ease;
-    box-shadow: 0 1rem 3rem rgba(232, 67, 147, 0.3);
 }
 
 .advantage-card:hover .icono-circular-advantage {
     transform: rotate(360deg) scale(1.1);
-    box-shadow: 0 2rem 4rem rgba(232, 67, 147, 0.5);
 }
 
 .icono-circular-advantage i {
     font-size: 6rem;
     color: var(--white);
 }
-
-/* Título de la tarjeta */
-.advantage-titulo {
-    font-size: 2.4rem;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    font-weight: 700;
+.advantage-titulo{
+    font-size: 1.7rem;
 }
-
-/* Líneas decorativas de descripción */
-.advantage-descripcion-lineas {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-.linea-advantage {
-    height: 6px;
-    background: var(--light-gray);
-    border-radius: 3px;
-}
-
 .linea-advantage:first-child {
-    width: 80%;
+    width: 100%;
+    font-size: 1.5rem;
 }
 
 .linea-advantage:last-child {
-    width: 60%;
+    width: 100%;
+    font-size: 1.5rem;
 }
-
-/* Botón central Learn More */
-.advantages-boton-container {
-    text-align: center;
-    animation: fadeInUp 1.4s ease;
-}
-
-.btn-advantages {
-    padding: 1.8rem 5rem;
-    font-size: 1.8rem;
-    border-radius: 5rem;
-    cursor: pointer;
-    font-weight: 600;
-    background: transparent;
-    color: var(--dark);
-    border: 3px solid var(--dark);
-    transition: all 0.3s ease;
-}
-
-.btn-advantages:hover {
-    background: var(--dark);
-    color: var(--white);
-    transform: scale(1.05);
-    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
-}
-
-/* ========== SECCIÓN VALUE PROPOSITIONS (TEXTO + IMAGEN) ========== */
 .proposito-section {
     padding: 8rem 9%;
-    background: var(--white);
+    background:#f4e2ce;
     position: relative;
 }
 
@@ -405,7 +345,6 @@ header .fa-bars:hover{
     gap: 6rem;
 }
 
-/* Columna izquierda - Texto */
 .proposito-texto {
     flex: 1;
     animation: fadeInLeft 0.8s ease;
@@ -426,7 +365,6 @@ header .fa-bars:hover{
     margin-bottom: 4rem;
 }
 
-/* Features en dos columnas */
 .proposito-features {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -450,7 +388,6 @@ header .fa-bars:hover{
     line-height: 1.6;
 }
 
-/* Columna derecha - Imagen grande */
 .proposito-imagen {
     flex: 1;
     animation: fadeInRight 0.8s ease;
@@ -459,7 +396,7 @@ header .fa-bars:hover{
 .proposito-imagen-container {
     width: 100%;
     height: 55rem;
-    background: #8fa5b8; /* Color azul grisáceo */
+    background: #f4f5f6; 
     border-radius: 2rem;
     display: flex;
     align-items: center;
@@ -489,8 +426,6 @@ header .fa-bars:hover{
     color: rgba(255, 255, 255, 0.3);
     z-index: 1;
 }
-
-/* ========== LINK ACTIVO EN EL MENÚ ========== */
 .barranav a.active {
     color: var(--pink);
     font-weight: 600;
@@ -500,9 +435,6 @@ header .fa-bars:hover{
     width: 100%;
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Tablets */
 @media (max-width: 991px) {
     .advantages-titulo {
         font-size: 4rem;
@@ -546,7 +478,6 @@ header .fa-bars:hover{
     margin-bottom: 4rem;
 }
 
-/* Logo del footer */
 .footer-logo{
     display: flex;
     align-items: center;
@@ -591,40 +522,6 @@ header .fa-bars:hover{
 .footer-logo span{
     color: var(--pink);
 }
-
-/* Líneas del footer */
-.footer-lineas{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.linea-footer{
-    height: 6px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-}
-
-.linea-footer:nth-child(1){
-    width: 100%;
-}
-
-.linea-footer:nth-child(2){
-    width: 80%;
-}
-
-.linea-footer:nth-child(3){
-    width: 60%;
-}
-
-/* Títulos de columnas */
-.footer-titulo{
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--white);
-}
-
-/* Links del footer */
 .footer-links{
     display: flex;
     flex-direction: column;
@@ -644,7 +541,6 @@ header .fa-bars:hover{
     width: 100%;
 }
 
-/* Redes sociales */
 .redes-sociales{
     display: flex;
     gap: 1.5rem;
@@ -679,11 +575,11 @@ header .fa-bars:hover{
     display: flex;
     gap: 1rem;
     justify-content: center;
+    font-size: 1.3rem;
 }
 
 .linea-copy{
     height: 6px;
-    background: rgba(255,255,255,0.1);
     border-radius: 3px;
     width: 15rem;
 }

@@ -1,6 +1,6 @@
 .contacto-hero {
     padding: 12rem 9% 6rem;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background:#b8b8b8;
 }
 
 .contacto-hero-container {
@@ -10,12 +10,10 @@
     align-items: center;
     gap: 6rem;
 }
-/* Texto del hero */
 .hero-texto {
     flex: 1;
     animation: fadeInLeft 0.8s ease;
 }
-
 .hero-titulo {
     font-size: 5.5rem;
     color: var(--dark);
@@ -26,31 +24,10 @@
 
 .hero-descripcion {
     font-size: 1.8rem;
-    color: var(--gray);
+    color:#221f24;
     line-height: 1.8;
     margin-bottom: 3rem;
 }
-
-.btn-hero {
-    padding: 1.8rem 4.5rem;
-    font-size: 1.7rem;
-    background: #8b9d6f; /* Color verde oliva como en la imagen */
-    color: var(--white);
-    border: none;
-    border-radius: 5rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 0.5rem 1.5rem rgba(139, 157, 111, 0.3);
-}
-
-.btn-hero:hover {
-    background: #7a8b5e;
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba(139, 157, 111, 0.4);
-}
-
-/* Imagen del hero */
 .hero-imagen {
     flex: 1;
     animation: fadeInRight 0.8s ease;
@@ -77,10 +54,9 @@
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* ========== SECCIÓN INFORMACIÓN ADICIONAL ========== */
 .info-adicional {
     padding: 6rem 9%;
-    background: #e9ecef;
+    background: #ece6e3;
     text-align: center;
 }
 
@@ -98,14 +74,12 @@
 
 .info-descripcion {
     font-size: 1.6rem;
-    color: var(--gray);
+    color:#221f24;
     line-height: 1.8;
 }
-
-/* ========== SECCIÓN "POR QUÉ ELEGIRNOS" ========== */
 .porque-elegirnos {
     padding: 8rem 9%;
-    background: var(--white);
+    background:#f7ebdf;
 }
 
 .elegirnos-grid {
@@ -126,7 +100,6 @@
     transform: translateY(-10px);
 }
 
-/* Icono */
 .elegirnos-icono {
     width: 8rem;
     height: 8rem;
@@ -138,7 +111,7 @@
 
 .elegirnos-icono i {
     font-size: 5rem;
-    color: var(--dark);
+    color:#121212;
 }
 
 .elegirnos-titulo {
@@ -154,10 +127,9 @@
     line-height: 1.6;
 }
 
-/* ========== SECCIÓN DE FORMAS DE CONTACTO (TARJETAS) ========== */
 .formas-contacto {
     padding: 8rem 9%;
-    background: #f8f9fa;
+    background:#f6f4ed;
 }
 
 .contacto-grid {
@@ -168,7 +140,6 @@
     margin: 4rem auto 0;
 }
 
-/* Tarjeta de contacto */
 .contacto-card {
     background: var(--white);
     border-radius: 1rem;
@@ -183,7 +154,6 @@
     box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.15);
 }
 
-/* Imagen de la tarjeta */
 .contacto-card-imagen {
     width: 100%;
     height: 25rem;
@@ -198,7 +168,6 @@
     color: rgba(0, 0, 0, 0.2);
 }
 
-/* Información de la tarjeta */
 .contacto-card-info {
     padding: 2.5rem;
 }
@@ -235,10 +204,9 @@
     color: var(--white);
 }
 
-/* ========== SECCIÓN DE REDES SOCIALES ========== */
 .redes-sociales-section {
     padding: 8rem 9%;
-    background: var(--white);
+    background:#f0ecdd;
     text-align: center;
 }
 
@@ -257,7 +225,6 @@
     margin: 0 auto;
 }
 
-/* Tarjeta de red social */
 .red-social-card {
     background: var(--white);
     padding: 3rem;
@@ -274,7 +241,6 @@
     box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15);
 }
 
-/* Icono de red social */
 .red-social-icono {
     width: 10rem;
     height: 10rem;
@@ -295,7 +261,6 @@
     color: var(--white);
 }
 
-/* Colores específicos de cada red social */
 .red-social-icono.facebook {
     background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%);
 }
@@ -324,7 +289,6 @@
     color: var(--gray);
 }
 
-/* ========== LINK ACTIVO EN EL MENÚ ========== */
 .barranav a.active {
     color: var(--pink);
     font-weight: 600;
@@ -334,7 +298,6 @@
     width: 100%;
 }
 
-/* ========== ANIMACIONES ========== */
 .elegirnos-item:nth-child(1) {
     animation: fadeInUp 0.8s ease;
     animation-delay: 0.1s;
@@ -361,10 +324,6 @@
 .contacto-card:nth-child(3) {
     animation-delay: 0.3s;
 }
-
-/* ========== RESPONSIVE DESIGN ========== */
-
-/* Tablets */
 @media (max-width: 991px) {
     .hero-titulo {
         font-size: 4.5rem;
