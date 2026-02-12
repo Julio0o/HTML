@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUBO - Catálogo de Productos</title>
+    <title>KUBO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../index.css">
-    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="productos.css">
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
         
         <nav class="barranav">
             <a href="../index.html#home">Inicio</a>
-            <a href="catalogo.html" class="active">Productos</a>
+            <a href="productos.html" class="active">Productos</a>
             <a href="../mision/mision.htm">Misión</a>
             <a href="../vision/vision.htm">Visión</a>
             <a href="../contacto/contacto.htm">Contacto</a>
@@ -33,130 +33,200 @@
         </div>
     </header>
 
-    <section class="catalogo-hero">
-        <div class="catalogo-hero-container">
-            <h1 class="catalogo-hero-titulo">Catálogo de Productos</h1>
-            <p class="catalogo-hero-descripcion">
-                Explora nuestra amplia selección de productos de alta calidad
-            </p>
-        </div>
+    <section class="hero-catalogo">
+        <h1>Nuestro Catálogo</h1>
+        <p>Explora nuestras categorías y productos</p>
     </section>
 
-    <section class="busqueda-filtros">
-        <div class="busqueda-filtros-container">
-            <!-- Barra de búsqueda -->
-            <div class="barra-busqueda">
-                <i class="fas fa-search"></i>
-                <input type="text" id="busqueda" placeholder="Buscar productos...">
-            </div>
-
-            <!-- Filtros por categoría -->
-            <div class="filtros-categoria">
-                <button class="filtro-btn active" data-categoria="todos">
-                    <i class="fas fa-th"></i> Todos
-                </button>
-                <button class="filtro-btn" data-categoria="electronicos">
-                    <i class="fas fa-laptop"></i> Electrónicos
-                </button>
-                <button class="filtro-btn" data-categoria="ropa">
-                    <i class="fas fa-tshirt"></i> Ropa
-                </button>
-                <button class="filtro-btn" data-categoria="hogar">
-                    <i class="fas fa-home"></i> Hogar
-                </button>
-                <button class="filtro-btn" data-categoria="deportes">
-                    <i class="fas fa-futbol"></i> Deportes
-                </button>
-            </div>
-
-            <!-- Ordenar por -->
-            <div class="ordenar-por">
-                <label for="ordenar">Ordenar por:</label>
-                <select id="ordenar">
-                    <option value="destacado">Destacados</option>
-                    <option value="precio-bajo">Precio: Menor a Mayor</option>
-                    <option value="precio-alto">Precio: Mayor a Menor</option>
-                    <option value="nombre">Nombre A-Z</option>
-                    <option value="nuevo">Más Nuevos</option>
-                </select>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== GRID DE PRODUCTOS ==================== -->
-    <section class="productos-catalogo">
-        <div class="productos-grid" id="productosGrid">
-            <!-- Los productos se generan dinámicamente con JavaScript -->
-        </div>
-
-        <!-- Mensaje cuando no hay resultados -->
-        <div class="sin-resultados" id="sinResultados" style="display: none;">
-            <i class="fas fa-search"></i>
-            <h3>No se encontraron productos</h3>
-            <p>Intenta con otros términos de búsqueda o filtros</p>
-        </div>
-    </section>
-
-    <!-- ==================== PAGINACIÓN ==================== -->
-    <section class="paginacion">
-        <div class="paginacion-container">
-            <button class="paginacion-btn" id="btnAnterior">
-                <i class="fas fa-chevron-left"></i> Anterior
-            </button>
-            
-            <div class="paginacion-numeros" id="paginacionNumeros">
-                <button class="pagina-numero active">1</button>
-                <button class="pagina-numero">2</button>
-                <button class="pagina-numero">3</button>
-                <button class="pagina-numero">4</button>
-            </div>
-
-            <button class="paginacion-btn" id="btnSiguiente">
-                Siguiente <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </section>
-
-    <!-- ==================== SECCIÓN DE CATEGORÍAS DESTACADAS ==================== -->
-    <section class="categorias-destacadas">
-        <h2 class="titulo-seccion">Explora por Categorías</h2>
+    <section class="categorias-seccion">
+        <h2 class="titulo-seccion">Categorías</h2>
         
         <div class="categorias-grid">
-            <div class="categoria-card" data-categoria="electronicos">
+            <div class="categoria-card">
                 <div class="categoria-icono">
-                    <i class="fas fa-laptop"></i>
+                    <i class="fas fa-truck fast"></i>
                 </div>
-                <h3 class="categoria-nombre">Electrónicos</h3>
-                <p class="categoria-cantidad">120+ productos</p>
+                <h3>Importados</h3>
+                <p>50+ productos</p>
             </div>
 
-            <div class="categoria-card" data-categoria="ropa">
+            <div class="categoria-card">
                 <div class="categoria-icono">
-                    <i class="fas fa-tshirt"></i>
+                    <i class="fas fa-pen-nib"></i>
                 </div>
-                <h3 class="categoria-nombre">Ropa</h3>
-                <p class="categoria-cantidad">85+ productos</p>
+                <h3>Clásicos</h3>
+                <p>80+ productos</p>
             </div>
 
-            <div class="categoria-card" data-categoria="hogar">
+            <div class="categoria-card">
                 <div class="categoria-icono">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-child"></i>
                 </div>
-                <h3 class="categoria-nombre">Hogar</h3>
-                <p class="categoria-cantidad">95+ productos</p>
+                <h3>Infantiles</h3>
+                <p>60+ productos</p>
             </div>
 
-            <div class="categoria-card" data-categoria="deportes">
+            <div class="categoria-card">
                 <div class="categoria-icono">
-                    <i class="fas fa-futbol"></i>
+                    <i class="fas fa-puzzle-piece"></i>
                 </div>
-                <h3 class="categoria-nombre">Deportes</h3>
-                <p class="categoria-cantidad">65+ productos</p>
+                <h3>Sagas</h3>
+                <p>45+ productos</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="categoria-icono">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Edicion limitadas</h3>
+                <p>120+ productos</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="categoria-icono">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>Bolsillo</h3>
+                <p>35+ productos</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="categoria-icono">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h3>Cocina</h3>
+                <p>70+ productos</p>
+            </div>
+
+            <div class="categoria-card">
+                <div class="categoria-icono">
+                    <i class="fas fa-brush"></i>
+                </div>
+                <h3>Arte</h3>
+                <p>70+ productos</p>
             </div>
         </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
+    <section class="novedades-seccion">
+        <h2 class="titulo-seccion">Novedades</h2>
+        
+        <div class="productos-grid">
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Laptop Pro 2024</h3>
+                    <p class="producto-descripcion">Alto rendimiento para profesionales</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$899.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Smartphone Ultra</h3>
+                    <p class="producto-descripcion">Última generación con 5G</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$699.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Auriculares Pro</h3>
+                    <p class="producto-descripcion">Cancelación de ruido activa</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$149.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-tshirt"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Camiseta Premium</h3>
+                    <p class="producto-descripcion">Algodón 100% orgánico</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$29.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Sofá Moderno</h3>
+                    <p class="producto-descripcion">Confort y estilo para tu hogar</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$599.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-futbol"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Balón Profesional</h3>
+                    <p class="producto-descripcion">Tamaño oficial FIFA</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$39.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Libro Best Seller</h3>
+                    <p class="producto-descripcion">El más vendido del año</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$19.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto-card">
+                <div class="producto-imagen">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="producto-info">
+                    <h3 class="producto-nombre">Consola Gaming</h3>
+                    <p class="producto-descripcion">Última generación</p>
+                    <div class="producto-footer">
+                        <span class="producto-precio">$499.99</span>
+                        <button class="btn-ver-detalles">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="footer-contenido">
             <div class="footer-columna">
@@ -171,37 +241,11 @@
                 </div>
             </div>
 
-            <div class="footer-columna">
-                <h4 class="footer-titulo">Menú</h4>
-                <div class="footer-links">
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                </div>
-            </div>
-
-            <div class="footer-columna">
-                <h4 class="footer-titulo">Productos</h4>
-                <div class="footer-links">
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                </div>
-            </div>
-
-            <div class="footer-columna">
-                <h4 class="footer-titulo">Contacto</h4>
-                <div class="footer-links">
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
-                    <div class="link-linea"></div>
                 </div>
                 <div class="redes-sociales">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/?locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/?hl=es"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -213,9 +257,5 @@
             </div>
         </div>
     </footer>
-
-    <!-- Scripts JavaScript -->
-    <script src="../index.js"></script>
-    <script src="catalogo.js"></script>
 </body>
 </html>
