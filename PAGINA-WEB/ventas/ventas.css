@@ -1,0 +1,200 @@
+:root {
+    --bg-crema: #f2e8df;
+    --accent-cafe: #a04000;
+    --text-dark: #1a1a1a;
+    --white: #ffffff;
+    --red-delete: #d9534f;
+    --blue-edit: #4a90e2;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-crema);
+    display: flex;
+}
+
+/* Navegación lateral simple */
+.side-nav {
+    width: 200px;
+    background: var(--text-dark);
+    height: 100vh;
+    padding: 20px;
+    color: white;
+    position: fixed;
+}
+
+.side-nav .logo {
+    color: white;
+    margin-bottom: 30px;
+}
+
+.side-nav .logo span {
+    color: var(--accent-cafe);
+}
+
+.side-nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Contenedor Principal */
+.container {
+    margin-left: 240px;
+    padding: 40px;
+    width: 100%;
+}
+
+header h2 {
+    margin-top: 0;
+    color: var(--text-dark);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos del Formulario */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-cafe);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Estilos de la Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    text-align: left;
+    border-bottom: 2px solid var(--bg-crema);
+    padding: 10px;
+    color: #666;
+}
+
+td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    color: white;
+}
+
+.btn-edit {
+    background: var(--blue-edit);
+}
+
+.btn-delete {
+    background: var(--red-delete);
+}
+
+/* --- AJUSTES RESPONSIVE --- */
+
+/* Pantallas Medianas (Tablets / Laptops pequeñas) */
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        /* Una sola columna */
+    }
+
+    .side-nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .container {
+        margin-left: 0;
+        /* Quitamos el margen lateral */
+        padding: 20px;
+    }
+}
+
+/* Pantallas Pequeñas (Móviles) */
+@media (max-width: 600px) {
+    header h2 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .input-row {
+        flex-direction: column;
+        /* Precio y Stock uno sobre otro */
+        gap: 0;
+    }
+
+    /* Hacer la tabla desplazable horizontalmente para que no se rompa */
+    .table-section {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 500px;
+        /* Asegura que la tabla mantenga forma al scrollear */
+    }
+
+    .btn-edit,
+    .btn-delete {
+        padding: 10px;
+        /* Botones más grandes para dedos en móvil */
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+}

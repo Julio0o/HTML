@@ -1,0 +1,139 @@
+:root {
+    --bg-crema: #f2e8df;
+    --accent-cafe: #a04000;
+    --text-dark: #1a1a1a;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-crema);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    /* Espacio de seguridad para móviles */
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--accent-cafe);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.login-box {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.logo {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.logo span {
+    color: var(--accent-cafe);
+}
+
+h2 {
+    margin: 10px 0 5px;
+    font-size: 1.5rem;
+}
+
+p {
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-cafe);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-cafe);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s;
+}
+
+.btn-login:active {
+    transform: scale(0.98);
+}
+
+.footer-links {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+/* --- MEDIA QUERIES PARA MÓVIL --- */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 30px 20px;
+        /* Menos padding lateral en pantallas pequeñas */
+        border-radius: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        /* Links uno arriba del otro */
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+}
