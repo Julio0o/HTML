@@ -30,7 +30,7 @@
 
         <div class="iconos">
             <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="#" class="fas fa-shopping-cart" id="abrirCarrito"></a>
             <a href="../login/login.htm" class="fas fa-user"></a>
             <a href="../ventas/ventas.htm" class="fas fa-chart-line"></a>
         </div>
@@ -133,6 +133,25 @@
             </div>
         </div>
     </footer>
+    <div class="carrito-overlay" id="carritoOverlay"></div>
+    <div class="carrito-lateral" id="carritoLateral">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button class="cerrar-carrito" id="cerrarCarrito"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="carrito-items" id="carritoItems">
+            <!-- Los items del carrito aparecerán aquí -->
+            <p class="carrito-vacio">El carrito está vacío</p>
+        </div>
+        <div class="carrito-footer">
+            <div class="carrito-total">
+                <span>Total:</span>
+                <span id="carritoPrecioTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; text-align: center;">Finalizar Compra</button>
+        </div>
+    </div>
+    <script src="../carrito.js"></script>
 </body>
 
 </html>
