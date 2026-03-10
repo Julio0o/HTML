@@ -11,7 +11,7 @@ const carruselTrack = document.getElementById('carruselTrack');
 function cargarProductos() {
     productos.forEach(prod => {
         const card = document.createElement('div');
-        card.classList.add('producto-card');
+        card.classList.add('swiper-slide', 'producto-card');
         card.innerHTML = `
             <div class="producto-imagen">
                 <img src="${prod.imagen}" alt="Portada ${prod.nombre}" style="width: 100%; height: 100%; object-fit: contain;">
@@ -28,34 +28,29 @@ function cargarProductos() {
         `;
         carruselTrack.appendChild(card);
     });
-}
 
-const btnIzquierda = document.querySelector('.btn-izquierda');
-const btnDerecha = document.querySelector('.btn-derecha');
-const indicadores = document.querySelectorAll('.indicador');
-let index = 0;
-function actualizarCarrusel() {
-    const anchoTarjeta = document.querySelector('.producto-card').offsetWidth + 20;
-    carruselTrack.style.transform = `translateX(${-index * anchoTarjeta}px)`;
-
-    indicadores.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+    const swiper = new Swiper('.carrusel-contenedor', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            992: {
+                slidesPerView: 3,
+            }
+        }
     });
 }
-
-btnDerecha.addEventListener('click', () => {
-    if (index < productos.length - 1) {
-        index++;
-        actualizarCarrusel();
-    }
-});
-
-btnIzquierda.addEventListener('click', () => {
-    if (index > 0) {
-        index--;
-        actualizarCarrusel();
-    }
-});
 
 const observerOptions = {
     threshold: 0.2

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KUBO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Julio0o/HTML@main/PAGINA-WEB/front/index.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -101,26 +102,18 @@
             <div class="linea-sub"></div>
         </div>
 
-        <div class="carrusel-contenedor">
-            <button class="carrusel-btn btn-izquierda">
+        <div class="swiper carrusel-contenedor">
+            <div class="swiper-wrapper" id="carruselTrack">
+            </div>
+
+            <button class="carrusel-btn swiper-button-prev custom-prev">
                 <i class="fas fa-chevron-left"></i>
             </button>
-
-            <div class="carrusel-track-contenedor">
-                <div class="carrusel-track" id="carruselTrack">
-                </div>
-            </div>
-            <button class="carrusel-btn btn-derecha">
+            <button class="carrusel-btn swiper-button-next custom-next">
                 <i class="fas fa-chevron-right"></i>
             </button>
-        </div>
 
-        <div class="carrusel-indicadores">
-            <span class="indicador active" data-index="0"></span>
-            <span class="indicador" data-index="1"></span>
-            <span class="indicador" data-index="2"></span>
-            <span class="indicador" data-index="3"></span>
-            <span class="indicador" data-index="4"></span>
+            <div class="swiper-pagination custom-pagination"></div>
         </div>
     </section>
 
@@ -158,13 +151,15 @@
                 <div class="linea-copy">Kubo</div>
                 <p>
                     <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                        <img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="¡CSS Válido!" />
+                        <img style="border:0;width:88px;height:31px"
+                            src="https://jigsaw.w3.org/css-validator/images/vcss-blue" alt="¡CSS Válido!" />
                     </a>
                 </p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="index.js"></script>
 </body>
 

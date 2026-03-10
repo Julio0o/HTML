@@ -463,6 +463,12 @@ header .fa-bars:hover {
     max-width: 100%;
     margin: 0 auto;
     padding: 0 6rem;
+    overflow: hidden;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none !important;
 }
 
 .carrusel-btn {
@@ -478,6 +484,10 @@ header .fa-bars:hover {
     cursor: pointer;
     z-index: 10;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
 }
 
 .carrusel-btn:hover {
@@ -486,33 +496,20 @@ header .fa-bars:hover {
     transform: translateY(-50%) scale(1.1);
 }
 
-.btn-izquierda {
+.custom-prev {
     left: 0;
 }
 
-.btn-derecha {
+.custom-next {
     right: 0;
 }
 
-.carrusel-track-contenedor {
-    overflow: hidden;
-    border-radius: 1rem;
-}
-
-.carrusel-track {
-    display: flex;
-    gap: 2rem;
-    transition: transform 0.5s ease-in-out;
-    will-change: transform;
-}
-
 .producto-card {
-    min-width: calc(33.333% - 1.4rem);
-    flex-shrink: 0;
     background: var(--white);
     border-radius: 1rem;
     overflow: hidden;
     transition: all 0.3s ease;
+    height: auto;
 }
 
 .producto-card:hover {
@@ -584,30 +581,29 @@ header .fa-bars:hover {
     transform: scale(1.05);
 }
 
-.carrusel-indicadores {
+.custom-pagination {
+    position: relative;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
-    margin-top: 4rem;
 }
 
-.indicador {
+.swiper-pagination-bullet {
     width: 1.2rem;
     height: 1.2rem;
     background: #ddd;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    opacity: 1;
 }
 
-.indicador.active {
+.swiper-pagination-bullet-active {
     background: #411528;
     width: 3rem;
     border-radius: 1rem;
-}
-
-.indicador:hover {
-    background: #411528;
 }
 
 .cta-section {
