@@ -1,12 +1,10 @@
-/* ======================================= */
-/* LÓGICA DEL CARRITO LATERAL */
-/* ======================================= */
+// logica del carrito
 const carritoLateral = document.getElementById('carritoLateral');
 const carritoOverlay = document.getElementById('carritoOverlay');
 const abrirCarritoBtn = document.getElementById('abrirCarrito');
 const cerrarCarritoBtn = document.getElementById('cerrarCarrito');
 
-// Función para abrir el carrito
+//abrir el carrito
 function abrirCarrito(e) {
     if (e) e.preventDefault();
     carritoLateral.classList.add('active');
@@ -14,7 +12,7 @@ function abrirCarrito(e) {
     document.body.style.overflow = 'hidden';
 }
 
-// Función para cerrar el carrito
+//cerrar el carrito
 function cerrarCarrito() {
     carritoLateral.classList.remove('active');
     carritoOverlay.classList.remove('active');
