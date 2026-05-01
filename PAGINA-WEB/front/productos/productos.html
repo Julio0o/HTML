@@ -28,10 +28,12 @@
             <a href="../contacto/contacto.htm">Contacto</a>
         </nav>
 
-        <div class="iconos">
+        <div class="iconos" id="header-iconos">
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-shopping-cart" id="abrirCarrito"></a>
-            <a href="../login/login.htm" class="fas fa-user"></a>
+            <span id="user-info" style="display: none; font-size: 1.5rem; margin-left: 10px; font-weight: bold; color: var(--color-principal);"></span>
+            <a href="../login/login.htm" class="fas fa-user" id="user-icon"></a>
+            <a href="#" class="fas fa-sign-out-alt" id="logout-icon" style="display: none;" title="Cerrar Sesión"></a>
             <a href="../ventas/ventas.htm" class="fas fa-chart-line"></a>
         </div>
     </header>
@@ -114,7 +116,7 @@
     <section class="novedades-seccion">
         <h2 class="titulo-seccion">Novedades</h2>
 
-        <div class="productos-grid">
+        <div class="productos-grid" id="productos-dinamicos-grid">
             <div class="producto-card">
                 <div class="producto-imagen">
                     <img src="../../imagenes/heartless.png" alt="Portada Heartless"
@@ -284,6 +286,7 @@
         </div>
     </div>
     <script src="../carrito.js"></script>
+    <script src="productos.js"></script>
 </body>
 
 </html>
