@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     });
 
-    authForm.addEventListener('submit', (e) => {
+    authForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (!isLogin && (!nombreInput.value || !apellidosInput.value || !edadInput.value)) {
@@ -116,23 +116,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isLogin) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: 'Intentando iniciar sesión para: ' + emailInput.value,
-                icon: 'info',
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#3085d6'
-            });
+            // Lógica de Login real
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: emailInput.value,
+                        password: passwordInput.value
+                    })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error);
+
+                // Guardar datos de sesión
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Bienvenido de vuelta, ' + data.user.nombre,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: '#3085d6'
+                }).then(() => {
+                    // Redirigir según rol
+                    if (data.user.rol === 'admin') {
+                        window.location.href = '../../admin/dashboard.html';
+                    } else {
+                        window.location.href = '../index.html';
+                    }
+                });
+            } catch (error) {
+                Swal.fire({ title: 'Error', text: error.message, icon: 'error' });
+            }
         } else {
-            Swal.fire({
-                title: '¡Cuenta creada con éxito!',
-                text: 'Bienvenido, ' + nombreInput.value + ' ' + apellidosInput.value + '!',
-                icon: 'success',
-                confirmButtonText: 'Ir a la tienda',
-                confirmButtonColor: '#a04000'
-            }).then(() => {
-                window.location.href = '../index.html';
-            });
+            // Lógica de Registro real
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: nombreInput.value,
+                        apellidos: apellidosInput.value,
+                        edad: edadInput.value,
+                        email: emailInput.value,
+                        password: passwordInput.value
+                    })
+                });
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.error);
+
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                Swal.fire({
+                    title: '¡Cuenta creada con éxito!',
+                    text: 'Bienvenido, ' + data.user.nombre + ' ' + data.user.apellidos + '!',
+                    icon: 'success',
+                    confirmButtonText: 'Ir a la tienda',
+                    confirmButtonColor: '#a04000'
+                }).then(() => {
+                    window.location.href = '../index.html';
+                });
+            } catch (error) {
+                Swal.fire({ title: 'Error', text: error.message, icon: 'error' });
+            }
         }
     });
 });

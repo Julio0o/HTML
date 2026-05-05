@@ -7,8 +7,10 @@ const productos = [
     { id: 6, nombre: "Wigetta", imagen: "../imagenes/wigetta.jpg" }
 ];
 
-const carruselTrack = document.getElementById('carruselTrack');
 function cargarProductos() {
+    const carruselTrack = document.getElementById('carruselTrack');
+    carruselTrack.innerHTML = '';
+    
     productos.forEach(prod => {
         const card = document.createElement('div');
         card.classList.add('swiper-slide', 'producto-card');
@@ -29,32 +31,42 @@ function cargarProductos() {
         carruselTrack.appendChild(card);
     });
 
-    const swiper = new Swiper('.carrusel-contenedor', {
+    new Swiper('.carrusel-contenedor', {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         breakpoints: {
-            768: {
-                slidesPerView: 2,
-            },
-            992: {
-                slidesPerView: 3,
-            }
+            768: { slidesPerView: 2 },
+            992: { slidesPerView: 3 }
         }
     });
 }
 
-const observerOptions = {
-    threshold: 0.2
-};
+function checkAuth() {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+        const user = JSON.parse(userStr);
+        document.getElementById('user-icon').style.display = 'none';
+        
+        const userInfo = document.getElementById('user-info');
+        userInfo.textContent = 'Hola, ' + user.nombre;
+        userInfo.style.display = 'inline-block';
+        
+        const logoutIcon = document.getElementById('logout-icon');
+        logoutIcon.style.display = 'inline-block';
+        
+        logoutIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.reload();
+        });
+    }
+}
+
+const observerOptions = { threshold: 0.2 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -62,11 +74,14 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
 function iniciarAnimaciones() {
     const elementosAnimados = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .zoom-in');
     elementosAnimados.forEach(el => observer.observe(el));
 }
+
 document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
     cargarProductos();
     iniciarAnimaciones();
 });
