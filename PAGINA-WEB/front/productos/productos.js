@@ -1,3 +1,10 @@
+function fixImagePath(url) {
+    if (!url) return '../../imagenes/almendra.jpg';
+    if (url.startsWith('http')) return url;
+    const filename = url.split('/').pop();
+    return `http://localhost:5000/imagenes/${filename}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     cargarLibrosDinamicos();
@@ -7,6 +14,13 @@ function checkAuth() {
     const userStr = localStorage.getItem('user');
     if (userStr) {
         const user = JSON.parse(userStr);
+        
+        // Redirigir al admin a su panel (Requerimiento)
+        if (user.rol === 'admin') {
+            window.location.href = '../../admin/dashboard.html';
+            return;
+        }
+
         document.getElementById('user-icon').style.display = 'none';
         
         const userInfo = document.getElementById('user-info');
@@ -32,15 +46,16 @@ async function cargarLibrosDinamicos() {
         
         if (librosDB && librosDB.length > 0) {
             const grid = document.getElementById('productos-dinamicos-grid');
+            grid.innerHTML = ''; // Limpiar antes de cargar
             
-            // Recorremos en orden inverso para que el más nuevo quede primero al hacer prepend
             librosDB.reverse().forEach(libro => {
                 const card = document.createElement('div');
                 card.classList.add('producto-card');
+                if (libro.cantidad <= 0) card.classList.add('agotado');
                 
                 card.innerHTML = `
                     <div class="producto-imagen">
-                        <img src="${libro.imagen_url || '../../imagenes/almendra.jpg'}" alt="Portada ${libro.titulo}"
+                        <img src="${fixImagePath(libro.imagen_url)}" alt="Portada ${libro.titulo}"
                             style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="producto-info">
@@ -49,13 +64,15 @@ async function cargarLibrosDinamicos() {
                         <p style="font-size: 0.8rem; color: var(--primary); margin-bottom: 5px;">${libro.categorias || ''}</p>
                         <div class="producto-footer">
                             <span class="producto-precio">$${libro.precio}</span>
-                            <button class="btn-ver-detalles">Ver Detalles</button>
+                            ${libro.cantidad > 0 
+                                ? `<button class="btn-cart-icon" onclick='agregarAlCarrito(${JSON.stringify(libro).replace(/'/g, "&apos;")})'><i class="fas fa-cart-plus"></i></button>`
+                                : `<span class="agotado-badge">Agotado</span>`
+                            }
                         </div>
                     </div>
                 `;
                 
-                // Prepend añade el elemento al principio del grid
-                grid.prepend(card);
+                grid.appendChild(card);
             });
         }
     } catch (error) {

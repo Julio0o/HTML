@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Redirigir si ya hay sesión activa
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+        const user = JSON.parse(userStr);
+        if (user.rol === 'admin') {
+            window.location.href = '../../admin/dashboard.html';
+            return;
+        } else {
+            window.location.href = '../index.html';
+            return;
+        }
+    }
+
     let isLogin = true;
 
     const authForm = document.getElementById('auth-form');
@@ -76,6 +89,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
             formContainer.classList.add(enterAnimation);
         }, { once: true });
+    });
+
+    // Validación AJAX en tiempo real para el Email (Nombre de Usuario)
+    emailInput.addEventListener('input', async (e) => {
+        if (isLogin) return; // Solo validar al registrarse
+        
+        const email = e.target.value;
+        if (email.includes('@') && email.includes('.')) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/auth/check-email/${email}`);
+                const data = await response.json();
+                
+                if (!data.available) {
+                    emailInput.style.borderColor = '#ef4444';
+                    emailInput.style.boxShadow = '0 0 5px rgba(239, 68, 68, 0.5)';
+                } else {
+                    emailInput.style.borderColor = '#10b981';
+                    emailInput.style.boxShadow = '0 0 5px rgba(16, 185, 129, 0.5)';
+                }
+            } catch (err) {
+                console.error('Error validando email', err);
+            }
+        } else {
+            emailInput.style.borderColor = '';
+            emailInput.style.boxShadow = '';
+        }
     });
 
     authForm.addEventListener('submit', async (e) => {
