@@ -23,8 +23,21 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+// Servir la carpeta de imágenes de forma estática
+app.use('/imagenes', express.static(path.join(__dirname, '../PAGINA-WEB/imagenes')));
 
 // === RUTAS DE AUTENTICACIÓN ===
+
+// Verificar disponibilidad de email (AJAX)
+app.get('/api/auth/check-email/:email', async (req, res) => {
+    try {
+        const { email } = req.params;
+        const user = await pool.query('SELECT id FROM usuarios WHERE email = $1', [email]);
+        res.json({ available: user.rows.length === 0 });
+    } catch (err) {
+        res.status(500).json({ error: 'Error al verificar disponibilidad' });
+    }
+});
 
 // Registrar usuario
 app.post('/api/auth/register', async (req, res) => {
@@ -99,6 +112,30 @@ app.get('/api/libros', async (req, res) => {
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ error: 'Error del servidor' });
+    }
+});
+
+// Buscar libros por título o ID (AJAX)
+app.get('/api/buscar-libros', async (req, res) => {
+    try {
+        const { query } = req.query;
+        if (!query) return res.json([]);
+        
+        let result;
+        // Verificar si es un número entero válido para ID
+        const isNumber = /^\d+$/.test(query);
+        
+        if (isNumber) {
+            // Es un número, buscar por ID
+            result = await pool.query('SELECT * FROM libros WHERE id = $1', [parseInt(query)]);
+        } else {
+            // Es texto, buscar por título (case insensitive)
+            result = await pool.query('SELECT * FROM libros WHERE LOWER(titulo) LIKE LOWER($1)', [`%${query}%`]);
+        }
+        res.json(result.rows);
+    } catch (err) {
+        console.error('Error en búsqueda:', err.message);
+        res.status(500).json({ error: 'Error en la búsqueda' });
     }
 });
 

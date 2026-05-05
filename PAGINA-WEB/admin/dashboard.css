@@ -1,6 +1,6 @@
 :root {
-    --bg-dark: #0f172a;
-    --bg-card: rgba(30, 41, 59, 0.7);
+    --bg-dark: #162127;
+    --bg-card: #605246;
     --primary: #3b82f6;
     --primary-hover: #2563eb;
     --text-main: #f8fafc;
@@ -87,6 +87,17 @@ body {
 .logout-btn:hover {
     background: #ef4444;
     color: white;
+}
+
+.badge-notif {
+    background: #ef4444;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 /* Main Content - CORREGIDO */

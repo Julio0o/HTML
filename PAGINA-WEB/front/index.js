@@ -1,53 +1,71 @@
-const productos = [
-    { id: 1, nombre: "Almendra", imagen: "../imagenes/almendra.jpg" },
-    { id: 2, nombre: "Atlas", imagen: "../imagenes/atlas.jpg" },
-    { id: 3, nombre: "Fahrenheit 451", imagen: "../imagenes/farenheit.jpg" },
-    { id: 4, nombre: "Haikyu!!", imagen: "../imagenes/haikyu.jpg" },
-    { id: 5, nombre: "La Tregua", imagen: "../imagenes/tregua.jpg" },
-    { id: 6, nombre: "Wigetta", imagen: "../imagenes/wigetta.jpg" }
-];
+function fixImagePath(url) {
+    if (!url) return '../imagenes/almendra.jpg';
+    if (url.startsWith('http')) return url;
+    const filename = url.split('/').pop();
+    return `http://localhost:5000/imagenes/${filename}`;
+}
 
-function cargarProductos() {
+async function cargarProductos() {
     const carruselTrack = document.getElementById('carruselTrack');
-    carruselTrack.innerHTML = '';
+    if (!carruselTrack) return;
     
-    productos.forEach(prod => {
-        const card = document.createElement('div');
-        card.classList.add('swiper-slide', 'producto-card');
-        card.innerHTML = `
-            <div class="producto-imagen">
-                <img src="${prod.imagen}" alt="Portada ${prod.nombre}" style="width: 100%; height: 100%; object-fit: contain;">
-            </div>
-            <div class="producto-info">
-                <h3 style="font-size: 1.8rem; text-align: center; color: var(--dark); margin-bottom: 1.5rem;">${prod.nombre}</h3>
-                <div class="lineas-producto">
-                    <div class="linea-prod"></div>
-                    <div class="linea-prod"></div>
-                    <div class="linea-prod"></div>
+    try {
+        const response = await fetch('http://localhost:5000/api/libros');
+        const librosDB = await response.json();
+        
+        carruselTrack.innerHTML = '';
+        
+        // Mostrar solo los primeros 6 para el carrusel
+        librosDB.slice(0, 6).forEach(libro => {
+            const card = document.createElement('div');
+            card.classList.add('swiper-slide', 'producto-card');
+            if (libro.cantidad <= 0) card.classList.add('agotado');
+            
+            card.innerHTML = `
+                <div class="producto-imagen" style="padding: 1rem;">
+                    <img src="${fixImagePath(libro.imagen_url)}" alt="Portada ${libro.titulo}" style="width: 100%; height: 100%; object-fit: contain;">
                 </div>
-                <button class="btn-producto">Añadir al Carrito</button>
-            </div>
-        `;
-        carruselTrack.appendChild(card);
-    });
+                <div class="producto-info">
+                    <h3 style="font-size: 1.8rem; text-align: center; color: var(--dark); margin-bottom: 1rem;">${libro.titulo}</h3>
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <span style="font-size: 1.6rem; color: var(--pink); font-weight: bold;">$${libro.precio}</span>
+                    </div>
+                    ${libro.cantidad > 0 
+                        ? `<button class="btn-producto" onclick='agregarAlCarrito(${JSON.stringify(libro).replace(/'/g, "&apos;")})'>Añadir al Carrito</button>`
+                        : `<div style="text-align: center;"><span class="agotado-badge">Agotado</span></div>`
+                    }
+                </div>
+            `;
+            carruselTrack.appendChild(card);
+        });
 
-    new Swiper('.carrusel-contenedor', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        breakpoints: {
-            768: { slidesPerView: 2 },
-            992: { slidesPerView: 3 }
-        }
-    });
+        new Swiper('.carrusel-contenedor', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: librosDB.length > 3,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 }
+            }
+        });
+    } catch (error) {
+        console.error('Error cargando productos para el carrusel:', error);
+    }
 }
 
 function checkAuth() {
     const userStr = localStorage.getItem('user');
     if (userStr) {
         const user = JSON.parse(userStr);
+        
+        // Redirigir al admin a su panel si entra al index (Requerimiento)
+        if (user.rol === 'admin') {
+            window.location.href = '../admin/dashboard.html';
+            return;
+        }
+
         document.getElementById('user-icon').style.display = 'none';
         
         const userInfo = document.getElementById('user-info');
