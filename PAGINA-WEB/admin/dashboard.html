@@ -7,6 +7,31 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .role-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+        .badge-admin {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .badge-cliente {
+            background: rgba(20, 184, 166, 0.2);
+            color: #14b8a6;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+        .actions-cell {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,7 +39,7 @@
         <div class="logo"><i class="fas fa-cube"></i> KUBO<span>.</span></div>
         <ul class="nav-links">
             <li><a class="nav-link active" onclick="showSection('inventario')"><i class="fas fa-boxes"></i> Inventario</a></li>
-            <li><a class="nav-link" onclick="showSection('ventas')"><i class="fas fa-chart-pie"></i> Ventas <span id="notif-badge" class="badge-notif" style="display: none;">0</span></a></li>
+            <li><a class="nav-link" onclick="showSection('usuarios')"><i class="fas fa-users"></i> Usuarios <span id="notif-badge" class="badge-notif" style="display: none;">0</span></a></li>
             <li><a class="nav-link logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </aside>
@@ -121,8 +146,9 @@
             </div>
         </section>
 
-        <!-- Sección Ventas -->
-        <section id="ventas" class="section">
+        <!-- Sección Usuarios -->
+        <section id="usuarios" class="section">
+            <!-- Mantener notificaciones de stock intactas -->
             <div class="glass-panel" id="stock-notifications" style="margin-bottom: 2rem; border-left: 5px solid #ef4444; display: none;">
                 <h3 style="color: #ef4444; margin-bottom: 1rem;"><i class="fas fa-exclamation-triangle"></i> Notificaciones de Stock</h3>
                 <div id="lista-agotados" style="display: flex; flex-direction: column; gap: 10px;">
@@ -130,34 +156,71 @@
                 </div>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-dollar-sign stat-icon"></i>
-                    <div class="stat-info">
-                        <h3>$12,450</h3>
-                        <p>Ingresos Totales</p>
+            <!-- Nuevo Módulo de Gestión de Usuarios -->
+            <div class="glass-panel">
+                <h2 style="margin-bottom: 1.5rem;" id="usuario-form-titulo"><i class="fas fa-user-plus"></i> Gestionar Usuario</h2>
+                <form id="form-usuario" autocomplete="off">
+                    <!-- Dummy inputs to prevent autofill -->
+                    <input type="text" name="prevent_autofill" style="display:none">
+                    <input type="password" name="password_step_error" style="display:none">
+                    
+                    <input type="hidden" id="usuario-id">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Nombre</label>
+                            <input type="text" id="user-nombre" required placeholder="Nombre" autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Apellidos</label>
+                            <input type="text" id="user-apellidos" required placeholder="Apellidos" autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" id="user-email" required placeholder="correo@ejemplo.com" autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Contraseña (Mínimo 8 caracteres)</label>
+                            <input type="password" id="user-password" placeholder="Nueva contraseña o dejar vacío" autocomplete="new-password">
+                        </div>
+                        <div class="input-group">
+                            <label>Edad</label>
+                            <input type="number" id="user-edad" required placeholder="Ej. 25">
+                        </div>
+                        <div class="input-group">
+                            <label>Rol</label>
+                            <select id="user-rol">
+                                <option value="cliente">Cliente</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-shopping-bag stat-icon"></i>
-                    <div class="stat-info">
-                        <h3>142</h3>
-                        <p>Libros Vendidos</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-users stat-icon"></i>
-                    <div class="stat-info">
-                        <h3>89</h3>
-                        <p>Clientes Activos</p>
-                    </div>
-                </div>
+                    <button type="submit" class="btn" id="btn-guardar-usuario"><i class="fas fa-save"></i> Guardar Usuario</button>
+                    <button type="button" class="btn" id="btn-cancelar-usuario" style="display: none; background: #64748b;" onclick="resetFormularioUsuario()"><i class="fas fa-times"></i> Cancelar</button>
+                </form>
             </div>
 
-            <div class="glass-panel" style="text-align: center; padding: 5rem 2rem;">
-                <i class="fas fa-chart-bar" style="font-size: 4rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-                <h2>Módulo de Ventas en Construcción</h2>
-                <p style="color: var(--text-muted); margin-top: 1rem;">Aquí se mostrarán las gráficas de ingresos y transacciones pronto.</p>
+            <div class="glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2><i class="fas fa-user-shield"></i> Gestión de Usuarios - Librería</h2>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Edad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-usuarios">
+                            <!-- Los usuarios se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -182,19 +245,22 @@
             document.getElementById('admin-name').textContent = user.nombre;
             document.getElementById('admin-avatar').textContent = user.nombre.charAt(0).toUpperCase();
 
+            // Limpiar campos de gestión de usuario para evitar autocompletado
+            if (document.getElementById('user-email')) document.getElementById('user-email').value = '';
+            if (document.getElementById('user-password')) document.getElementById('user-password').value = '';
+
             // Load initial books
             cargarLibros();
+            cargarUsuarios(); // Cargar usuarios también al inicio
 
             // Busqueda AJAX por Nombre o ID (Requerimiento)
             document.getElementById('busqueda-libro').addEventListener('input', async (e) => {
                 const query = e.target.value.trim();
-                console.log('Buscando:', query);
                 
                 if (query.length > 0) {
                     try {
-                        const response = await fetch(`http://localhost:5000/api/buscar-libros?query=${encodeURIComponent(query)}`);
+                        const response = await fetch(`/api/buscar-libros?query=${encodeURIComponent(query)}`);
                         const librosFiltrados = await response.json();
-                        console.log('Resultados encontrados:', librosFiltrados.length);
                         renderizarTabla(librosFiltrados);
                     } catch (err) {
                         console.error('Error en búsqueda AJAX', err);
@@ -212,6 +278,11 @@
             
             document.getElementById(sectionId).classList.add('active');
             
+            // Si entramos a usuarios, recargar la lista
+            if (sectionId === 'usuarios') {
+                cargarUsuarios();
+            }
+
             // Find the link that was clicked
             const links = document.querySelectorAll('.nav-link');
             links.forEach(link => {
@@ -304,7 +375,8 @@
         // Fetch and render books
         async function cargarLibros() {
             try {
-                const response = await fetch('http://localhost:5000/api/libros');
+                const response = await fetch('/api/libros');
+                if (!response.ok) throw new Error('Error al cargar libros');
                 librosActuales = await response.json();
                 renderizarTabla(librosActuales);
             } catch (err) {
@@ -405,19 +477,150 @@
         async function eliminarLibro(id) {
             if (confirm('¿Estás seguro de que quieres eliminar este libro de la base de datos?')) {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/libros/${id}`, {
+                    const response = await fetch(`/api/libros/${id}`, {
                         method: 'DELETE'
                     });
                     if(response.ok) {
                         alert('Libro eliminado permanentemente.');
                         cargarLibros();
+                    } else {
+                        alert('Error al intentar borrar el libro');
                     }
                 } catch (err) {
                     console.error('Error eliminando libro', err);
-                    alert('Error al intentar borrar el libro');
+                    alert('Error de conexión');
                 }
             }
         }
+
+        // === GESTIÓN DE USUARIOS ===
+        let usuariosActuales = [];
+
+        async function cargarUsuarios() {
+            console.log('Intentando cargar usuarios...');
+            try {
+                const response = await fetch('/api/usuarios');
+                if (!response.ok) throw new Error('Error al obtener usuarios del servidor');
+                usuariosActuales = await response.json();
+                console.log('Usuarios recibidos:', usuariosActuales);
+                renderizarTablaUsuarios(usuariosActuales);
+            } catch (err) {
+                console.error('Error cargando usuarios', err);
+                // No mostramos alert aquí para no molestar, pero lo dejamos en consola
+            }
+        }
+
+        function renderizarTablaUsuarios(usuarios) {
+            const tbody = document.getElementById('tabla-usuarios');
+            tbody.innerHTML = '';
+
+            if (usuarios.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">No hay usuarios registrados o error de carga.</td></tr>';
+                return;
+            }
+
+            usuarios.forEach((u, index) => {
+                const rolClass = u.rol === 'admin' ? 'badge-admin' : 'badge-cliente';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="color: var(--text-muted); font-size: 0.8rem;">#${u.id}</td>
+                    <td style="font-weight: 600;">${u.nombre}</td>
+                    <td>${u.apellidos}</td>
+                    <td>${u.email}</td>
+                    <td><span class="role-badge ${rolClass}">${u.rol.toUpperCase()}</span></td>
+                    <td>${u.edad}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button onclick="prepararEdicionUsuario(${index})" class="btn-icon edit" title="Editar"><i class="fas fa-edit"></i></button>
+                            <button onclick="eliminarUsuario(${u.id})" class="btn-icon delete" title="Eliminar"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function prepararEdicionUsuario(index) {
+            const u = usuariosActuales[index];
+            document.getElementById('usuario-id').value = u.id;
+            document.getElementById('user-nombre').value = u.nombre;
+            document.getElementById('user-apellidos').value = u.apellidos;
+            document.getElementById('user-email').value = u.email;
+            document.getElementById('user-edad').value = u.edad;
+            document.getElementById('user-rol').value = u.rol;
+            document.getElementById('user-password').value = '';
+
+            document.getElementById('usuario-form-titulo').innerHTML = '<i class="fas fa-user-edit"></i> Editando Usuario #' + u.id;
+            document.getElementById('btn-guardar-usuario').innerHTML = '<i class="fas fa-sync"></i> Actualizar Usuario';
+            document.getElementById('btn-cancelar-usuario').style.display = 'inline-block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetFormularioUsuario() {
+            document.getElementById('form-usuario').reset();
+            document.getElementById('usuario-id').value = '';
+            document.getElementById('usuario-form-titulo').innerHTML = '<i class="fas fa-user-plus"></i> Gestionar Usuario';
+            document.getElementById('btn-guardar-usuario').innerHTML = '<i class="fas fa-save"></i> Guardar Usuario';
+            document.getElementById('btn-cancelar-usuario').style.display = 'none';
+        }
+
+        document.getElementById('form-usuario').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('usuario-id').value;
+            const data = {
+                nombre: document.getElementById('user-nombre').value,
+                apellidos: document.getElementById('user-apellidos').value,
+                email: document.getElementById('user-email').value,
+                edad: document.getElementById('user-edad').value,
+                rol: document.getElementById('user-rol').value,
+                password: document.getElementById('user-password').value
+            };
+
+            const url = id ? `/api/usuarios/${id}` : '/api/auth/register';
+            const method = id ? 'PUT' : 'POST';
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert(id ? 'Usuario actualizado con éxito' : 'Usuario creado con éxito');
+                    resetFormularioUsuario();
+                    cargarUsuarios();
+                } else {
+                    const errData = await response.json();
+                    alert('Error: ' + (errData.error || 'No se pudo guardar el usuario'));
+                }
+            } catch (err) {
+                console.error('Error guardando usuario', err);
+                alert('Error de conexión con el servidor');
+            }
+        });
+
+        async function eliminarUsuario(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar este usuario permanentemente?')) {
+                try {
+                    const response = await fetch(`/api/usuarios/${id}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        alert('Usuario eliminado correctamente.');
+                        cargarUsuarios();
+                    } else {
+                        alert('Error al eliminar el usuario.');
+                    }
+                } catch (err) {
+                    console.error('Error eliminando usuario', err);
+                    alert('Error de conexión.');
+                }
+            }
+        }
+
+        // Cargar usuarios al iniciar si la sección activa lo requiere o simplemente cargarlos
+        cargarUsuarios();
     </script>
 </body>
 </html>

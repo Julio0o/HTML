@@ -25,6 +25,8 @@ app.use(cors());
 app.use(express.json());
 // Servir la carpeta de imágenes de forma estática
 app.use('/imagenes', express.static(path.join(__dirname, '../PAGINA-WEB/imagenes')));
+// Servir toda la página web de forma estática (Permite quitar Live Server)
+app.use(express.static(path.join(__dirname, '../PAGINA-WEB')));
 
 // === RUTAS DE AUTENTICACIÓN ===
 
@@ -99,6 +101,57 @@ app.post('/api/auth/login', async (req, res) => {
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ error: 'Error del servidor' });
+    }
+});
+
+// === RUTAS DE GESTIÓN DE USUARIOS ===
+
+// Obtener todos los usuarios
+app.get('/api/usuarios', async (req, res) => {
+    try {
+        const allUsers = await pool.query('SELECT id, nombre, apellidos, email, rol, edad FROM usuarios ORDER BY id ASC');
+        res.json(allUsers.rows);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Error del servidor' });
+    }
+});
+
+// Actualizar usuario
+app.put('/api/usuarios/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, apellidos, email, rol, edad, password } = req.body;
+
+        let query = 'UPDATE usuarios SET nombre = $1, apellidos = $2, email = $3, rol = $4, edad = $5';
+        let values = [nombre, apellidos, email, rol, edad, id];
+
+        if (password && password.trim() !== '') {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            query += ', password = $6 WHERE id = $7 RETURNING id, nombre, email, rol, edad';
+            values.push(hashedPassword, id);
+        } else {
+            query += ' WHERE id = $6 RETURNING id, nombre, email, rol, edad';
+        }
+
+        const updateUser = await pool.query(query, values);
+        res.json(updateUser.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Error al actualizar usuario' });
+    }
+});
+
+// Eliminar usuario permanentemente
+app.delete('/api/usuarios/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await pool.query('DELETE FROM usuarios WHERE id = $1', [id]);
+        res.json({ message: 'Usuario eliminado permanentemente' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Error al eliminar usuario' });
     }
 });
 
@@ -196,6 +249,12 @@ app.delete('/api/libros/:id', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+
+// Ruta principal para entrar directo a la tienda
+app.get('/', (req, res) => {
+    res.redirect('/front/index.html');
+});
+
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
     console.log(`http://localhost:${PORT}`);

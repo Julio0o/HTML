@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = e.target.value;
         if (email.includes('@') && email.includes('.')) {
             try {
-                const response = await fetch(`http://localhost:5000/api/auth/check-email/${email}`);
+                const response = await fetch(`/api/auth/check-email/${email}`);
                 const data = await response.json();
                 
                 if (!data.available) {
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLogin) {
             // Lógica de Login real
             try {
-                const response = await fetch('http://localhost:5000/api/auth/login', {
+                const response = await fetch('/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Lógica de Registro real
             try {
-                const response = await fetch('http://localhost:5000/api/auth/register', {
+                const response = await fetch('/api/auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
