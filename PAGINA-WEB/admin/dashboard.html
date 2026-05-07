@@ -43,12 +43,20 @@
             <li><a class="nav-link logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
     </aside>
+    
+    <!-- Overlay para móvil -->
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <main class="main-content">
         <header class="header">
-            <div>
-                <h1 style="font-size: 2rem; font-weight: 700;">Panel de Control</h1>
-                <p style="color: var(--text-muted); margin-top: 5px;">Gestiona tu tienda KUBO</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div>
+                    <h1 style="font-size: 1.5rem; font-weight: 700;" id="page-title">Panel de Control</h1>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;" id="page-subtitle">Gestiona tu tienda KUBO</p>
+                </div>
             </div>
             <div class="user-profile">
                 <div style="text-align: right;">
@@ -227,6 +235,12 @@
     </main>
 
     <script>
+        // Toggle Sidebar for Mobile
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('active');
+        }
+
         // Check Auth on load
         document.addEventListener('DOMContentLoaded', () => {
             const userStr = localStorage.getItem('user');
@@ -277,6 +291,11 @@
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             
             document.getElementById(sectionId).classList.add('active');
+
+            // Close sidebar on mobile after clicking
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
             
             // Si entramos a usuarios, recargar la lista
             if (sectionId === 'usuarios') {
