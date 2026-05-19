@@ -4,6 +4,9 @@ node_modules/
 # Archivos de configuración local y secretos
 .env
 
+# Certificados SSL locales (mkcert)
+*.pem
+
 # Archivos del sistema
 .DS_Store
 Thumbs.db

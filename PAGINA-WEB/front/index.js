@@ -1,26 +1,32 @@
+// Configuración de API según ambiente
+// En producción (Azure): reemplaza TU-BACKEND-AQUI con el nombre real de tu App Service
+const API_BASE = window.location.hostname === 'localhost'
+    ? 'https://localhost:3000'
+    : 'https://TU-BACKEND-AQUI.azurewebsites.net';
+
 function fixImagePath(url) {
     if (!url) return '../imagenes/almendra.jpg';
     if (url.startsWith('http')) return url;
     const filename = url.split('/').pop();
-    return `http://localhost:5000/imagenes/${filename}`;
+    return `${API_BASE}/imagenes/${filename}`;
 }
 
 async function cargarProductos() {
     const carruselTrack = document.getElementById('carruselTrack');
     if (!carruselTrack) return;
-    
+
     try {
-        const response = await fetch('http://localhost:5000/api/libros');
+        const response = await fetch(`${API_BASE}/api/libros`);
         const librosDB = await response.json();
-        
+
         carruselTrack.innerHTML = '';
-        
+
         // Mostrar solo los primeros 6 para el carrusel
         librosDB.slice(0, 6).forEach(libro => {
             const card = document.createElement('div');
             card.classList.add('swiper-slide', 'producto-card');
             if (libro.cantidad <= 0) card.classList.add('agotado');
-            
+
             card.innerHTML = `
                 <div class="producto-imagen" style="padding: 1rem;">
                     <img src="${fixImagePath(libro.imagen_url)}" alt="Portada ${libro.titulo}" style="width: 100%; height: 100%; object-fit: contain;">
@@ -30,10 +36,10 @@ async function cargarProductos() {
                     <div style="text-align: center; margin-bottom: 1rem;">
                         <span style="font-size: 1.6rem; color: var(--pink); font-weight: bold;">$${libro.precio}</span>
                     </div>
-                    ${libro.cantidad > 0 
-                        ? `<button class="btn-producto" onclick='agregarAlCarrito(${JSON.stringify(libro).replace(/'/g, "&apos;")})'>Añadir al Carrito</button>`
-                        : `<div style="text-align: center;"><span class="agotado-badge">Agotado</span></div>`
-                    }
+                    ${libro.cantidad > 0
+                    ? `<button class="btn-producto" onclick='agregarAlCarrito(${JSON.stringify(libro).replace(/'/g, "&apos;")})'>Añadir al Carrito</button>`
+                    : `<div style="text-align: center;"><span class="agotado-badge">Agotado</span></div>`
+                }
                 </div>
             `;
             carruselTrack.appendChild(card);
@@ -59,7 +65,7 @@ function checkAuth() {
     const userStr = localStorage.getItem('user');
     if (userStr) {
         const user = JSON.parse(userStr);
-        
+
         // Redirigir al admin a su panel si entra al index (Requerimiento)
         if (user.rol === 'admin') {
             window.location.href = '../admin/dashboard.html';
@@ -67,14 +73,14 @@ function checkAuth() {
         }
 
         document.getElementById('user-icon').style.display = 'none';
-        
+
         const userInfo = document.getElementById('user-info');
         userInfo.textContent = 'Hola, ' + user.nombre;
         userInfo.style.display = 'inline-block';
-        
+
         const logoutIcon = document.getElementById('logout-icon');
         logoutIcon.style.display = 'inline-block';
-        
+
         logoutIcon.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('user');

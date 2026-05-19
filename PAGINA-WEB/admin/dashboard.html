@@ -363,13 +363,13 @@
                 let response;
                 if (libroId) {
                     // Update
-                    response = await fetch(`http://localhost:5000/api/libros/${libroId}`, {
+                    response = await fetch(`${API_BASE}/api/libros/${libroId}`, {
                         method: 'PUT',
                         body: formData
                     });
                 } else {
                     // Insert
-                    response = await fetch('http://localhost:5000/api/libros', {
+                    response = await fetch(`${API_BASE}/api/libros`, {
                         method: 'POST',
                         body: formData
                     });

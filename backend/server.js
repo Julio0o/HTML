@@ -6,6 +6,8 @@ require('dotenv').config();
 const pool = require('./db');
 const multer = require('multer');
 const path = require('path');
+const https = require('https');
+const fs = require('fs');
 
 // Configuración de Multer para subir imágenes
 const storage = multer.diskStorage({
@@ -248,14 +250,29 @@ app.delete('/api/libros/:id', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Ruta principal para entrar directo a la tienda
 app.get('/', (req, res) => {
     res.redirect('/front/index.html');
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
-    console.log(`http://localhost:${PORT}`);
-});
+// HTTPS local con mkcert (solo en desarrollo)
+const certPath = path.join(__dirname, 'localhost.pem');
+const keyPath  = path.join(__dirname, 'localhost-key.pem');
+
+if (!process.env.RAILWAY_ENVIRONMENT && fs.existsSync(certPath) && fs.existsSync(keyPath)) {
+    const sslOptions = {
+        cert: fs.readFileSync(certPath),
+        key:  fs.readFileSync(keyPath)
+    };
+    https.createServer(sslOptions, app).listen(PORT, () => {
+        console.log(`Servidor HTTPS corriendo en https://localhost:${PORT}`);
+    });
+} else {
+    // En Railway o sin certificados: HTTP normal (Railway pone HTTPS encima)
+    app.listen(PORT, () => {
+        console.log(`Servidor corriendo en el puerto ${PORT}`);
+        console.log(`http://localhost:${PORT}`);
+    });
+}
