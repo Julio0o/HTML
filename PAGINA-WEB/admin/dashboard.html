@@ -235,6 +235,8 @@
     </main>
 
     <script>
+        const API_BASE = 'https://kobo-backend-bwf8evc5eggkg5gk.canadacentral-01.azurewebsites.net';
+
         // Toggle Sidebar for Mobile
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('open');
@@ -273,7 +275,7 @@
                 
                 if (query.length > 0) {
                     try {
-                        const response = await fetch(`/api/buscar-libros?query=${encodeURIComponent(query)}`);
+                        const response = await fetch(`${API_BASE}/api/buscar-libros?query=${encodeURIComponent(query)}`);
                         const librosFiltrados = await response.json();
                         renderizarTabla(librosFiltrados);
                     } catch (err) {
@@ -394,7 +396,7 @@
         // Fetch and render books
         async function cargarLibros() {
             try {
-                const response = await fetch('/api/libros');
+                const response = await fetch(`${API_BASE}/api/libros`);
                 if (!response.ok) throw new Error('Error al cargar libros');
                 librosActuales = await response.json();
                 renderizarTabla(librosActuales);
@@ -496,7 +498,7 @@
         async function eliminarLibro(id) {
             if (confirm('¿Estás seguro de que quieres eliminar este libro de la base de datos?')) {
                 try {
-                    const response = await fetch(`/api/libros/${id}`, {
+                    const response = await fetch(`${API_BASE}/api/libros/${id}`, {
                         method: 'DELETE'
                     });
                     if(response.ok) {
@@ -518,7 +520,7 @@
         async function cargarUsuarios() {
             console.log('Intentando cargar usuarios...');
             try {
-                const response = await fetch('/api/usuarios');
+                const response = await fetch(`${API_BASE}/api/usuarios`);
                 if (!response.ok) throw new Error('Error al obtener usuarios del servidor');
                 usuariosActuales = await response.json();
                 console.log('Usuarios recibidos:', usuariosActuales);
@@ -595,7 +597,7 @@
                 password: document.getElementById('user-password').value
             };
 
-            const url = id ? `/api/usuarios/${id}` : '/api/auth/register';
+            const url = id ? `${API_BASE}/api/usuarios/${id}` : `${API_BASE}/api/auth/register`;
             const method = id ? 'PUT' : 'POST';
 
             try {
@@ -622,7 +624,7 @@
         async function eliminarUsuario(id) {
             if (confirm('¿Estás seguro de que quieres eliminar este usuario permanentemente?')) {
                 try {
-                    const response = await fetch(`/api/usuarios/${id}`, {
+                    const response = await fetch(`${API_BASE}/api/usuarios/${id}`, {
                         method: 'DELETE'
                     });
                     if (response.ok) {
