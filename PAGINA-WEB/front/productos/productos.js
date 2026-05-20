@@ -2,7 +2,7 @@ function fixImagePath(url) {
     if (!url) return '../../imagenes/almendra.jpg';
     if (url.startsWith('http')) return url;
     const filename = url.split('/').pop();
-    return `http://localhost:5000/imagenes/${filename}`;
+    return `https://kobo-backend.azurewebsites.net/imagenes/${filename}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +41,7 @@ function checkAuth() {
 
 async function cargarLibrosDinamicos() {
     try {
-        const response = await fetch('http://localhost:5000/api/libros');
+        const response = await fetch('https://kobo-backend.azurewebsites.net/api/libros');
         const librosDB = await response.json();
         
         if (librosDB && librosDB.length > 0) {
