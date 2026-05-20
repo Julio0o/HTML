@@ -2,7 +2,7 @@ function fixImagePath(url) {
     if (!url) return '../imagenes/almendra.jpg';
     if (url.startsWith('http')) return url;
     const filename = url.split('/').pop();
-    return `https://kobo-backend.azurewebsites.net/imagenes/${filename}`;
+    return `https://kobo-backend-bwf8evc5eggkg5gk.canadacentral-01.azurewebsites.net/imagenes/${filename}`;
 }
 
 async function cargarProductos() {
@@ -10,7 +10,7 @@ async function cargarProductos() {
     if (!carruselTrack) return;
     
     try {
-        const response = await fetch('https://kobo-backend.azurewebsites.net/api/libros');
+        const response = await fetch('https://kobo-backend-bwf8evc5eggkg5gk.canadacentral-01.azurewebsites.net/api/libros');
         const librosDB = await response.json();
         
         carruselTrack.innerHTML = '';
