@@ -1,3 +1,5 @@
+const BACKEND = 'https://kobo-backend-bwf8evc5eggkg5gk.canadacentral-01.azurewebsites.net';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Redirigir si ya hay sesión activa
     const userStr = localStorage.getItem('user');
@@ -98,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = e.target.value;
         if (email.includes('@') && email.includes('.')) {
             try {
-                const response = await fetch(`/api/auth/check-email/${email}`);
+                const response = await fetch(`${BACKEND}/api/auth/check-email/${email}`);
                 const data = await response.json();
                 
                 if (!data.available) {
@@ -157,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLogin) {
             // Lógica de Login real
             try {
-                const response = await fetch('/api/auth/login', {
+                const response = await fetch(`${BACKEND}/api/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -192,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Lógica de Registro real
             try {
-                const response = await fetch('/api/auth/register', {
+                const response = await fetch(`${BACKEND}/api/auth/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
