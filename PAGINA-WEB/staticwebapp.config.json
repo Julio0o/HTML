@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "redirect": "/front/index.html"
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/front/index.html",
+    "exclude": ["/front/*", "/admin/*", "/imagenes/*"]
+  }
+}
