@@ -12,7 +12,7 @@ const fs = require('fs');
 // Configuración de Multer para subir imágenes
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../PAGINA-WEB/imagenes'));
+        cb(null, path.join(__dirname, 'imagenes'));
     },
     filename: (req, file, cb) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -26,7 +26,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 // Servir la carpeta de imágenes de forma estática
-app.use('/imagenes', express.static(path.join(__dirname, '../PAGINA-WEB/imagenes')));
+app.use('/imagenes', express.static(path.join(__dirname, 'imagenes')));
 // Servir toda la página web de forma estática (Permite quitar Live Server)
 app.use(express.static(path.join(__dirname, '../PAGINA-WEB')));
 
