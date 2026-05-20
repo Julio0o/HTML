@@ -24,6 +24,8 @@ jobs:
           node-version: '24.x'
 
       - name: npm install, build, and test
+        # 👇 Indica a GitHub dónde buscar el package.json para compilar
+        working-directory: backend
         run: |
           npm install
           npm run build --if-present
@@ -33,7 +35,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: .
+          # 👇 Sube como artefacto solo la carpeta compilada del backend
+          path: backend
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,6 +50,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+          # 👇 Descarga el artefacto directamente en la carpeta destino
+          path: backend
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -61,5 +66,5 @@ jobs:
         with:
           app-name: 'kobo-backend'
           slot-name: 'Production'
-          package: .
-          
+          # 👇 Le dice a Azure que despliegue el contenido de esa carpeta
+          package: backend
