@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userStr) {
         const user = JSON.parse(userStr);
         if (user.rol === 'admin') {
-            window.location.href = '../../admin/dashboard.html';
+            window.location.href = '../admin/dashboard.html';
             return;
         } else {
             window.location.href = '../index.html';
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).then(() => {
                     // Redirigir según rol
                     if (data.user.rol === 'admin') {
-                        window.location.href = '../../admin/dashboard.html';
+                        window.location.href = '../admin/dashboard.html';
                     } else {
                         window.location.href = '../index.html';
                     }

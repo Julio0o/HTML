@@ -62,7 +62,7 @@ function checkAuth() {
         
         // Redirigir al admin a su panel si entra al index (Requerimiento)
         if (user.rol === 'admin') {
-            window.location.href = '../admin/dashboard.html';
+            window.location.href = 'admin/dashboard.html';
             return;
         }
 
